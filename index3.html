@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGNA – Data Governance & Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #0E0E0E;
+  --bg2:      #141414;
+  --bg3:      #1A1A1A;
+  --gold:     #C9A227;
+  --gold-lt:  #E4B94A;
+  --gold-dim: rgba(201,162,39,0.12);
+  --gold-border: rgba(201,162,39,0.22);
+  --gray:     #8A8A8A;
+  --gray-lt:  #B0B0B0;
+  --gray-dim: rgba(255,255,255,0.05);
+  --white:    #F5F0E8;
+  --white80:  rgba(245,240,232,0.75);
+  --white40:  rgba(245,240,232,0.38);
+  --border:   rgba(255,255,255,0.07);
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--white);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7; overflow-x: hidden;
+}
+body::after {
+  content: ''; position: fixed; inset: 0;
+  background-image: radial-gradient(circle, rgba(201,162,39,0.055) 1px, transparent 1px);
+  background-size: 36px 36px; pointer-events: none; z-index: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 64px;
+  background: rgba(14,14,14,0.88); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
+.dna-mark { width: 34px; height: 34px; flex-shrink: 0; }
+.nav-wordmark { font-family: var(--font-display); font-size: 20px; font-weight: 800; letter-spacing: 0.06em; }
+.nav-wordmark span { color: var(--gold); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { color: var(--white40); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--gold) !important; color: #0E0E0E !important; padding: 9px 22px; border-radius: 5px; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--gold-lt) !important; color: #0E0E0E !important; }
+
+/* HERO */
+#hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 140px 64px 80px; overflow: hidden; }
+.hero-glow { position: absolute; top: -160px; right: -160px; width: 640px; height: 640px; background: radial-gradient(circle, rgba(201,162,39,0.14) 0%, transparent 68%); pointer-events: none; z-index: 1; }
+.hero-glow2 { position: absolute; bottom: -80px; left: 25%; width: 460px; height: 360px; background: radial-gradient(circle, rgba(138,138,138,0.06) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+.hero-dna-bg { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); opacity: 0.07; pointer-events: none; z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-dim); border: 1px solid var(--gold-border);
+  border-radius: 100px; padding: 6px 16px; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 30px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.hero-badge::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+h1 { font-family: var(--font-display); font-size: clamp(42px,5.5vw,68px); font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 26px; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+h1 em { font-style: normal; background: linear-gradient(120deg, var(--gold) 0%, var(--gold-lt) 55%, #f0d080 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: 17px; font-weight: 300; color: var(--white80); max-width: 540px; line-height: 1.8; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.7s 0.6s forwards; }
+.hero-sub .en { display: block; font-size: 14px; color: var(--white40); margin-top: 6px; font-style: italic; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.8s forwards; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 14px; padding: 13px 26px; border-radius: 6px; border: none; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--white80); text-decoration: none; font-weight: 400; font-size: 14px; padding: 13px 22px; border-radius: 6px; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s, transform 0.15s; }
+.btn-secondary:hover { border-color: var(--gold-border); color: var(--gold-lt); transform: translateY(-2px); }
+.hero-stats { position: relative; z-index: 2; display: flex; gap: 48px; margin-top: 70px; padding-top: 36px; border-top: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s 1s forwards; }
+.stat-item .num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--gold); letter-spacing: -0.02em; }
+.stat-item .label { font-size: 12px; color: var(--white40); font-weight: 400; margin-top: 3px; }
+
+/* SECTIONS */
+section { position: relative; z-index: 2; padding: 100px 64px; }
+.section-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.section-tag::before { content: '— '; opacity: 0.5; }
+h2 { font-family: var(--font-display); font-size: clamp(28px,3.8vw,44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
+.section-sub { font-size: 15px; color: var(--white40); font-style: italic; margin-bottom: 56px; }
+
+/* ABOUT */
+#about { background: linear-gradient(180deg, transparent 0%, rgba(201,162,39,0.03) 50%, transparent 100%); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
+.about-text p { color: var(--white80); font-weight: 300; font-size: 15px; margin-bottom: 14px; }
+.about-text p.en { color: var(--white40); font-style: italic; font-size: 13px; margin-top: -8px; margin-bottom: 20px; }
+.about-card { background: var(--gray-dim); border: 1px solid var(--border); border-radius: 14px; padding: 30px; position: relative; overflow: hidden; }
+.about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+.framework-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.framework-item:last-child { border-bottom: none; }
+.framework-icon { width: 34px; height: 34px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.framework-item h4 { font-family: var(--font-display); font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.framework-item p { font-size: 12px; color: var(--white40); font-weight: 300; }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 56px; }
+.service-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 34px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.2s; }
+.service-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; bottom: 0; background: var(--gold); border-radius: 12px 0 0 12px; opacity: 0; transition: opacity 0.3s; }
+.service-card:hover::before { opacity: 1; }
+.service-num { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 18px; opacity: 0.7; }
+.service-card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+.service-card .en-title { font-size: 12px; color: var(--white40); font-style: italic; margin-bottom: 14px; }
+.service-card p { font-size: 14px; color: var(--white80); font-weight: 300; line-height: 1.7; margin-bottom: 18px; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; font-weight: 500; color: var(--gold); background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 3px; padding: 3px 9px; letter-spacing: 0.02em; }
+
+/* CONTACT */
+#contact { background: linear-gradient(180deg, transparent 0%, rgba(201,162,39,0.04) 100%); }
+.contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-left p { color: var(--white80); font-weight: 300; font-size: 15px; margin-bottom: 8px; }
+.contact-left p.en { color: var(--white40); font-style: italic; font-size: 13px; margin-bottom: 36px; }
+.contact-info { display: flex; flex-direction: column; gap: 18px; }
+.contact-row { display: flex; align-items: flex-start; gap: 14px; }
+.contact-icon { width: 36px; height: 36px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.contact-row .detail strong { display: block; font-size: 13px; font-weight: 500; margin-bottom: 1px; color: var(--gray-lt); }
+.contact-row .detail span { font-size: 13px; color: var(--white40); font-weight: 300; }
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-form input, .contact-form textarea { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 12px 15px; color: var(--white); font-family: var(--font-body); font-size: 14px; font-weight: 300; outline: none; width: 100%; resize: none; transition: border-color 0.2s; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--white40); }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold-border); }
+.contact-form textarea { min-height: 108px; }
+.form-submit { background: var(--gold); color: #0E0E0E; border: none; border-radius: 7px; padding: 13px 26px; font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s, transform 0.15s; }
+.form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+/* FOOTER */
+footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 32px 64px; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo-wrap { display: flex; align-items: center; gap: 10px; }
+.footer-wordmark { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.06em; color: var(--white); }
+.footer-wordmark span { color: var(--gold); }
+footer p { font-size: 12px; color: var(--white40); }
+
+.line-divider { position: relative; z-index: 2; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 64px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 70px 24px; }
+  #hero { padding: 120px 24px 60px; }
+  .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; flex-wrap: wrap; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-dna-bg { display: none; }
+  .line-divider { margin: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="dna-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 3 C10 8,26 11,26 15 C26 19,10 21,10 25 C10 29,26 31,26 33" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M26 3 C26 8,10 11,10 15 C10 19,26 21,26 25 C26 29,10 31,10 33" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <line x1="12" y1="8.5" x2="24" y2="8.5" stroke="#C9A227" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+      <line x1="11" y1="14" x2="25" y2="14" stroke="#C9A227" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+      <line x1="12" y1="19" x2="24" y2="19" stroke="#8A8A8A" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+      <line x1="11" y1="25" x2="25" y2="25" stroke="#C9A227" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
+      <line x1="12" y1="30" x2="24" y2="30" stroke="#8A8A8A" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
+    </svg>
+    <span class="nav-wordmark">DG<span>NA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Về chúng tôi</a></li>
+    <li><a href="#services">Dịch vụ</a></li>
+    <li><a href="#contact" class="nav-cta">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <svg class="hero-dna-bg" width="280" height="520" viewBox="0 0 70 130" fill="none">
+    <path d="M18 2 C18 14,52 20,52 34 C52 48,18 54,18 68 C18 82,52 88,52 102 C52 116,18 122,18 128" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <path d="M52 2 C52 14,18 20,18 34 C18 48,52 54,52 68 C52 82,18 88,18 102 C18 116,52 122,52 128" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <line x1="22" y1="12"  x2="48" y2="12"  stroke="#C9A227" stroke-width="1.4" opacity="0.7"/>
+    <line x1="20" y1="24"  x2="50" y2="24"  stroke="#C9A227" stroke-width="1.4" opacity="0.9"/>
+    <line x1="22" y1="34"  x2="48" y2="34"  stroke="#8A8A8A" stroke-width="1.4" opacity="0.5"/>
+    <line x1="20" y1="46"  x2="50" y2="46"  stroke="#C9A227" stroke-width="1.4" opacity="0.8"/>
+    <line x1="22" y1="58"  x2="48" y2="58"  stroke="#8A8A8A" stroke-width="1.4" opacity="0.4"/>
+    <line x1="20" y1="68"  x2="50" y2="68"  stroke="#C9A227" stroke-width="1.4" opacity="0.9"/>
+    <line x1="22" y1="80"  x2="48" y2="80"  stroke="#8A8A8A" stroke-width="1.4" opacity="0.4"/>
+    <line x1="20" y1="92"  x2="50" y2="92"  stroke="#C9A227" stroke-width="1.4" opacity="0.7"/>
+    <line x1="22" y1="102" x2="48" y2="102" stroke="#8A8A8A" stroke-width="1.4" opacity="0.35"/>
+    <line x1="20" y1="114" x2="50" y2="114" stroke="#C9A227" stroke-width="1.4" opacity="0.55"/>
+    <line x1="22" y1="124" x2="48" y2="124" stroke="#8A8A8A" stroke-width="1.4" opacity="0.25"/>
+  </svg>
+
+  <div style="max-width:1100px;margin:0 auto;width:100%;">
+    <div class="hero-content">
+      <div class="hero-badge">Data Governance &amp; Architecture</div>
+      <h1>Nền tảng quản trị<br>dữ liệu <em>thế hệ mới</em></h1>
+      <p class="hero-sub">
+        DGNA cung cấp giải pháp quản trị dữ liệu, kiến trúc hệ thống và chuyển đổi số toàn diện cho doanh nghiệp và cơ quan nhà nước Việt Nam.
+        <span class="en">Comprehensive data governance, architecture &amp; digital transformation solutions for Vietnamese enterprises and government agencies.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">
+          Khám phá giải pháp
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">Tư vấn miễn phí</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="num">5+</div>
+        <div class="label">Sản phẩm &amp; giải pháp<br><em>Products &amp; solutions</em></div>
+      </div>
+      <div class="stat-item">
+        <div class="num">DMBOK</div>
+        <div class="label">Chuẩn quốc tế<br><em>International standard</em></div>
+      </div>
+      <div class="stat-item">
+        <div class="num">57-NQ/TW</div>
+        <div class="label">Tuân thủ pháp lý<br><em>Regulatory compliant</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <span class="section-tag">Về chúng tôi / About</span>
+      <h2>Kiến trúc dữ liệu<br>là nền tảng của tương lai</h2>
+      <p style="margin-top:10px;">DGNA là công ty chuyên sâu về quản trị dữ liệu và kiến trúc hệ thống thông tin, hoạt động tại thị trường Việt Nam.</p>
+      <p class="en">DGNA specialises in data governance and information architecture for the Vietnamese market.</p>
+      <p>Chúng tôi đồng hành cùng các bộ, ngành và doanh nghiệp trong hành trình chuyển đổi số — từ nền tảng quản trị dữ liệu, xác thực eKYC, đến đào tạo và tư vấn chiến lược.</p>
+      <p class="en">From data governance platforms and eKYC solutions to training and strategic consulting — we cover the full spectrum.</p>
+      <a href="#services" class="btn-secondary" style="margin-top:16px;display:inline-flex;">Xem dịch vụ →</a>
+    </div>
+    <div class="reveal">
+      <div class="about-card">
+        <div class="framework-item">
+          <div class="framework-icon">📐</div>
+          <div><h4>DAMA-DMBOK Framework</h4><p>Chuẩn quản trị dữ liệu quốc tế / International standard</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-icon">🏛️</div>
+          <div><h4>Tuân thủ pháp lý Việt Nam</h4><p>57-NQ/TW, 2439/QĐ-TTg, Luật Dữ liệu</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-icon">🔒</div>
+          <div><h4>eKYC &amp; Data Quality</h4><p>Xác thực định danh &amp; kiểm soát chất lượng dữ liệu</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-icon">📊</div>
+          <div><h4>MDM &amp; Data Catalog</h4><p>Quản lý dữ liệu chủ &amp; danh mục dữ liệu toàn tổ chức</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<!-- SERVICES -->
+<section id="services" style="padding:100px 64px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal">
+      <span class="section-tag">Dịch vụ / Services</span>
+      <h2>Giải pháp toàn diện<br>cho dữ liệu của bạn</h2>
+      <p class="section-sub">End-to-end solutions for your data challenges.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01 / DATA PLATFORM</div>
+        <h3>Nền tảng Quản trị Dữ liệu</h3>
+        <div class="en-title">Data Governance Platform</div>
+        <p>Triển khai nền tảng quản trị dữ liệu theo chuẩn DAMA-DMBOK, kiểm soát toàn bộ vòng đời dữ liệu từ thu thập đến lưu trữ và khai thác.</p>
+        <div class="service-tags"><span class="tag">DAMA-DMBOK</span><span class="tag">Data Lifecycle</span><span class="tag">Policy Engine</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02 / IDENTITY</div>
+        <h3>Giải pháp eKYC</h3>
+        <div class="en-title">eKYC &amp; Identity Verification</div>
+        <p>Xác thực định danh điện tử nhanh chóng, chính xác. Tích hợp cơ sở dữ liệu quốc gia và tuân thủ Nghị định 13/2023 về bảo vệ dữ liệu cá nhân.</p>
+        <div class="service-tags"><span class="tag">OCR</span><span class="tag">Face Recognition</span><span class="tag">NĐ 13/2023</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03 / TRAINING</div>
+        <h3>Đào tạo Chuyên sâu</h3>
+        <div class="en-title">Professional Training Courses</div>
+        <p>Chương trình đào tạo về Quản trị Dữ liệu &amp; Kiến trúc Thông tin cho cán bộ bộ, ngành và doanh nghiệp. Có thể white-label theo nhu cầu đối tác.</p>
+        <div class="service-tags"><span class="tag">Data Governance</span><span class="tag">Architecture</span><span class="tag">White-label</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04 / CONSULTING</div>
+        <h3>Tư vấn &amp; Khung pháp lý</h3>
+        <div class="en-title">Consulting &amp; Framework Templates</div>
+        <p>Tư vấn chiến lược chuyển đổi số, xây dựng khung quản trị dữ liệu, bộ template chuẩn phục vụ triển khai cho các bộ và tỉnh thành.</p>
+        <div class="service-tags"><span class="tag">Strategy</span><span class="tag">Templates</span><span class="tag">57-NQ/TW</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <span class="section-tag">Liên hệ / Contact</span>
+      <h2>Bắt đầu hành trình<br>dữ liệu của bạn</h2>
+      <p>Chúng tôi sẵn sàng tư vấn và đồng hành cùng tổ chức của bạn.</p>
+      <p class="en">We're ready to advise and partner with your organisation.</p>
+      <div class="contact-info">
+        <div class="contact-row"><div class="contact-icon">📍</div><div class="detail"><strong>Địa chỉ</strong><span>Hà Nội, Việt Nam</span></div></div>
+        <div class="contact-row"><div class="contact-icon">✉️</div><div class="detail"><strong>Email</strong><span>contact@dgna.vn</span></div></div>
+        <div class="contact-row"><div class="contact-icon">📞</div><div class="detail"><strong>Hotline</strong><span>+84 (0) xxx xxx xxx</span></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Họ và tên / Full name" required>
+          <input type="text" placeholder="Tổ chức / Organisation">
+        </div>
+        <input type="email" placeholder="Email *" required>
+        <input type="text" placeholder="Chủ đề / Subject">
+        <textarea placeholder="Nội dung / Message..."></textarea>
+        <button type="submit" class="form-submit">Gửi tin nhắn / Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
+      <path d="M10 3 C10 8,26 11,26 15 C26 19,10 21,10 25 C10 29,26 31,26 33" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M26 3 C26 8,10 11,10 15 C10 19,26 21,26 25 C26 29,10 31,10 33" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <line x1="12" y1="8.5" x2="24" y2="8.5" stroke="#C9A227" stroke-width="1.3" opacity="0.6"/>
+      <line x1="11" y1="14" x2="25" y2="14" stroke="#C9A227" stroke-width="1.3" opacity="0.9"/>
+      <line x1="12" y1="19" x2="24" y2="19" stroke="#8A8A8A" stroke-width="1.3" opacity="0.5"/>
+      <line x1="11" y1="25" x2="25" y2="25" stroke="#C9A227" stroke-width="1.3" opacity="0.85"/>
+      <line x1="12" y1="30" x2="24" y2="30" stroke="#8A8A8A" stroke-width="1.3" opacity="0.4"/>
+    </svg>
+    <span class="footer-wordmark">DG<span>NA</span></span>
+  </div>
+  <p>© 2025 DGNA. Data Governance &amp; Architecture Vietnam.</p>
+  <p>Built in Hà Nội 🇻🇳</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Đã gửi! / Sent!';
+  btn.style.background = '#5a7a4a'; btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.textContent = 'Gửi tin nhắn / Send message →';
+    btn.style.background = ''; btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold-lt)' : ''; });
+});
+</script>
+</body>
+</html>
