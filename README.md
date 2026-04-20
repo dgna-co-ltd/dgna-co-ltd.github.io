@@ -1,1 +1,1 @@
-# dgna-co-ltd.github.io
+# DGNA - Nền Tảng Quản Trị Dữ Liệu Doanh Nghiệp
