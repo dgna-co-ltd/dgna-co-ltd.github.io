@@ -52,6 +52,10 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  background: #1e1a0e;
+  border: 1px solid rgba(240,180,41,0.2);
+  border-radius: 12px;
+  padding: 10px 14px;
 }
 .module-label {
   font-size: 11px;
@@ -62,8 +66,12 @@ body {
 }
 .counter {
   font-size: 13px;
-  color: var(--dim);
-  font-weight: 600;
+  color: #f0b429;
+  font-weight: 700;
+  background: rgba(240,180,41,0.12);
+  border: 1px solid rgba(240,180,41,0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
 }
 
 /* PROGRESS */
@@ -207,20 +215,34 @@ body {
 /* ACTION */
 .action-row { display: flex; justify-content: flex-end; }
 .action-btn {
-  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
-  color: #1a1200;
-  border: none;
+  background: #2a2010;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
   border-radius: 12px;
   padding: 12px 28px;
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
   letter-spacing: 0.03em;
-  transition: opacity 0.2s, transform 0.1s;
+  transition: all 0.2s;
 }
-.action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.action-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  background: #1a1a1a;
+  border-color: #444;
+  color: #555;
+}
+.action-btn.next {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #1a1000;
+  border-color: transparent;
+}
 .action-btn:not(:disabled):hover { opacity: 0.88; }
 .action-btn:not(:disabled):active { transform: scale(0.97); }
+
+/* opt-label text color fix after state change */
+.opt-btn:not(.selected):not(.correct):not(.wrong) .opt-label { color: #a09080; }
 
 /* RESULT SCREEN */
 .result-badge { text-align: center; margin-bottom: 12px; font-size: 56px; line-height: 1; }
@@ -276,12 +298,16 @@ body {
 .review-scroll { overflow-y: auto; max-height: 68vh; padding-right: 4px; }
 .review-item {
   margin-bottom: 22px; padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .review-q {
   display: flex; gap: 10px; align-items: flex-start;
-  color: var(--text); font-size: 14px; font-weight: 600;
+  color: #f0ece0; font-size: 14px; font-weight: 600;
   margin-bottom: 10px; line-height: 1.55;
+  background: rgba(240,180,41,0.05);
+  border: 1px solid rgba(240,180,41,0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
 }
 .r-num {
   width: 24px; height: 24px; border-radius: 6px;
@@ -291,11 +317,15 @@ body {
 .review-opt {
   font-size: 13px; padding: 7px 10px; border-radius: 8px;
   margin-bottom: 4px; line-height: 1.5; border: 1px solid transparent;
-  margin-left: 34px;
+  margin-left: 34px; color: #686058;
 }
 .review-exp {
-  font-size: 12px; color: #4a4640; margin-top: 8px;
+  font-size: 12px; color: #806840; margin-top: 8px;
   line-height: 1.6; font-style: italic; margin-left: 34px;
+  background: #1e1c14;
+  border-left: 2px solid rgba(240,180,41,0.3);
+  padding: 6px 10px;
+  border-radius: 0 6px 6px 0;
 }
 
 /* HIDDEN SCREENS */
@@ -544,6 +574,7 @@ function render() {
   const btn = document.getElementById("action-btn");
   btn.textContent = "Xác nhận";
   btn.disabled = true;
+  btn.classList.remove("next");
   btn.onclick = handleSubmit;
 
   // Options
@@ -592,6 +623,7 @@ function handleSubmit() {
   // Next button
   const btn = document.getElementById("action-btn");
   btn.disabled = false;
+  btn.classList.add("next");
   btn.textContent = current+1 >= questions.length ? "Xem kết quả →" : "Câu tiếp theo →";
   btn.onclick = handleNext;
 }
