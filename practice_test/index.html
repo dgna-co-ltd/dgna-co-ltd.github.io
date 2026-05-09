@@ -11,21 +11,23 @@
 
 ```
 :root {
-  --bg: #060d1a;
-  --card: #0a1628;
-  --border: rgba(0,168,232,0.15);
-  --blue: #00a8e8;
-  --green: #00d084;
+  --gold: #f0b429;
+  --gold-dim: #c8911a;
+  --gold-glow: rgba(240,180,41,0.18);
+  --green: #4caf7d;
   --red: #e8445a;
-  --gold: #f5a623;
-  --text: #ddeeff;
-  --muted: #8899aa;
-  --dim: #445566;
+  --bg: #0e0e0e;
+  --card: #161616;
+  --surface: #1f1f1f;
+  --border: rgba(240,180,41,0.18);
+  --text: #f0ece0;
+  --muted: #7a7570;
+  --dim: #4a4640;
 }
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #060d1a 0%, #0a1628 50%, #060f20 100%);
+  background: radial-gradient(ellipse at 30% 20%, #1a1500 0%, #0e0e0e 55%, #050505 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,10 +39,10 @@ body {
 .card {
   width: 100%;
   max-width: 660px;
-  background: rgba(10,22,44,0.97);
+  background: var(--card);
   border-radius: 20px;
   border: 1px solid var(--border);
-  box-shadow: 0 0 60px rgba(0,168,232,0.08), 0 24px 48px rgba(0,0,0,0.6);
+  box-shadow: 0 0 80px rgba(240,180,41,0.06), 0 24px 48px rgba(0,0,0,0.7);
   padding: 28px 28px 24px;
 }
 
@@ -54,9 +56,9 @@ body {
 .module-label {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--gold);
 }
 .counter {
   font-size: 13px;
@@ -67,14 +69,14 @@ body {
 /* PROGRESS */
 .progress-track {
   height: 3px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.05);
   border-radius: 99px;
   overflow: hidden;
   margin-bottom: 14px;
 }
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--blue), var(--green));
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
   border-radius: 99px;
   transition: width 0.4s ease;
 }
@@ -84,7 +86,7 @@ body {
   color: var(--dim);
   margin-bottom: 20px;
 }
-.score-chip span { color: var(--green); font-weight: 700; }
+.score-chip span { color: var(--gold); font-weight: 700; }
 
 /* QUESTION */
 .question-block {
@@ -96,7 +98,7 @@ body {
 .q-num-large {
   font-size: 38px;
   font-weight: 900;
-  color: rgba(0,168,232,0.15);
+  color: rgba(240,180,41,0.13);
   line-height: 1;
   min-width: 48px;
   letter-spacing: -2px;
@@ -118,9 +120,9 @@ body {
   padding: 12px 14px;
   border-radius: 12px;
   text-align: left;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: #ccdded;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #c8c0b0;
   cursor: pointer;
   transition: all 0.2s;
   font-size: 14px;
@@ -128,22 +130,23 @@ body {
   width: 100%;
 }
 .opt-btn:hover:not(:disabled) {
-  background: rgba(0,168,232,0.07);
-  border-color: rgba(0,168,232,0.3);
+  background: rgba(240,180,41,0.08);
+  border-color: rgba(240,180,41,0.35);
+  color: var(--text);
 }
 .opt-btn:disabled { cursor: default; }
 .opt-btn.selected {
-  background: rgba(0,168,232,0.12);
-  border-color: var(--blue);
-  color: #e8f6ff;
+  background: rgba(240,180,41,0.11);
+  border-color: var(--gold);
+  color: #fff8e0;
 }
 .opt-btn.correct {
-  background: rgba(0,208,132,0.12);
+  background: rgba(76,175,125,0.12);
   border-color: var(--green);
-  color: #e0fff5;
+  color: #e0fff0;
 }
 .opt-btn.wrong {
-  background: rgba(232,68,90,0.12);
+  background: rgba(232,68,90,0.11);
   border-color: var(--red);
   color: #ffe0e5;
 }
@@ -158,20 +161,20 @@ body {
   font-size: 12px;
   font-weight: 800;
   flex-shrink: 0;
-  background: rgba(255,255,255,0.08);
-  color: #99aabb;
+  background: rgba(255,255,255,0.07);
+  color: #666058;
   transition: all 0.2s;
 }
-.opt-btn.selected .opt-label { background: var(--blue); color: #fff; }
-.opt-btn.correct .opt-label  { background: var(--green); color: #003322; }
+.opt-btn.selected .opt-label { background: var(--gold); color: #1a1200; }
+.opt-btn.correct .opt-label  { background: var(--green); color: #002211; }
 .opt-btn.wrong .opt-label    { background: var(--red); color: #fff; }
 
 /* EXPLANATION */
 .explanation {
   display: flex;
   gap: 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
   border-radius: 12px;
   padding: 12px 14px;
   margin-bottom: 16px;
@@ -186,24 +189,24 @@ body {
 /* ACTION */
 .action-row { display: flex; justify-content: flex-end; }
 .action-btn {
-  background: linear-gradient(135deg, var(--blue), #0077cc);
-  color: #fff;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #1a1200;
   border: none;
   border-radius: 12px;
   padding: 12px 28px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   transition: opacity 0.2s, transform 0.1s;
 }
-.action-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.action-btn:not(:disabled):hover { opacity: 0.9; }
+.action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.action-btn:not(:disabled):hover { opacity: 0.88; }
 .action-btn:not(:disabled):active { transform: scale(0.97); }
 
 /* RESULT SCREEN */
 .result-badge { text-align: center; margin-bottom: 12px; font-size: 56px; line-height: 1; }
-.result-title { text-align: center; color: #ccdded; font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.result-title { text-align: center; color: var(--text); font-size: 18px; font-weight: 700; margin-bottom: 16px; }
 .score-big { text-align: center; font-size: 64px; font-weight: 900; letter-spacing: -3px; line-height: 1; margin-bottom: 12px; }
 .grade-tag {
   display: block;
@@ -220,13 +223,13 @@ body {
 .dot-cell {
   width: 34px; height: 34px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 800; color: #fff;
+  font-size: 12px; font-weight: 800; color: #111;
 }
 .result-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 16px; }
 .review-btn {
-  background: rgba(255,255,255,0.06);
-  color: #ccdded;
-  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--surface);
+  color: #c8c0b0;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
   padding: 11px 22px;
   font-size: 14px;
@@ -234,38 +237,38 @@ body {
   cursor: pointer;
 }
 .restart-btn {
-  background: linear-gradient(135deg, var(--blue), #0077cc);
-  color: #fff; border: none; border-radius: 12px;
-  padding: 11px 22px; font-size: 14px; font-weight: 700; cursor: pointer;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #1a1200; border: none; border-radius: 12px;
+  padding: 11px 22px; font-size: 14px; font-weight: 800; cursor: pointer;
 }
-.module-tag { text-align: center; font-size: 11px; color: #334455; letter-spacing: 0.1em; }
+.module-tag { text-align: center; font-size: 11px; color: #333028; letter-spacing: 0.1em; }
 
 /* REVIEW SCREEN */
 .review-header {
   display: flex; align-items: center; gap: 14px;
   margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
   padding-bottom: 14px;
 }
 .back-btn {
-  background: transparent; border: none; color: var(--blue);
+  background: transparent; border: none; color: var(--gold);
   font-size: 13px; font-weight: 700; cursor: pointer; padding: 0;
 }
-.review-title { color: #ccdded; font-weight: 700; font-size: 15px; }
+.review-title { color: var(--text); font-weight: 700; font-size: 15px; }
 .review-scroll { overflow-y: auto; max-height: 68vh; padding-right: 4px; }
 .review-item {
   margin-bottom: 22px; padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 .review-q {
   display: flex; gap: 10px; align-items: flex-start;
-  color: #ccdded; font-size: 14px; font-weight: 600;
+  color: var(--text); font-size: 14px; font-weight: 600;
   margin-bottom: 10px; line-height: 1.55;
 }
 .r-num {
   width: 24px; height: 24px; border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 1px;
+  font-size: 11px; font-weight: 800; color: #111; flex-shrink: 0; margin-top: 1px;
 }
 .review-opt {
   font-size: 13px; padding: 7px 10px; border-radius: 8px;
@@ -273,7 +276,7 @@ body {
   margin-left: 34px;
 }
 .review-exp {
-  font-size: 12px; color: #556677; margin-top: 8px;
+  font-size: 12px; color: #4a4640; margin-top: 8px;
   line-height: 1.6; font-style: italic; margin-left: 34px;
 }
 
