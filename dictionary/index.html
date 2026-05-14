@@ -3,557 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Từ Điển Thuật Ngữ Quản Trị Dữ Liệu — DGNA</title>
+<title>Từ Điển Thuật Ngữ & Văn Bản Pháp Luật — DGNA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold:       #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dim:   #7A6228;
-    --gold-pale:  #F5EDD6;
-    --black:      #0E0E0E;
-    --gray-900:   #1A1A1A;
-    --gray-800:   #242424;
-    --gray-700:   #333333;
-    --gray-600:   #4A4A4A;
-    --gray-400:   #888888;
-    --gray-200:   #D4D4D4;
-    --gray-100:   #EFEFEF;
-    --gray-50:    #F8F7F5;
-    --white:      #FAFAF8;
-    --radius:     6px;
-    --radius-lg:  12px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--black);
-    color: var(--white);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── Noise texture overlay ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0;
-  }
-
-  /* ── Layout ── */
-  .site-wrap { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-
-  /* ── Header ── */
-  header {
-    padding: 3rem 0 2rem;
-    border-bottom: 1px solid var(--gray-800);
-    display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .brand { display: flex; align-items: center; gap: 1rem; }
-  .brand-mark {
-    width: 40px; height: 40px;
-    border: 1.5px solid var(--gold);
-    display: grid; place-items: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--gold); letter-spacing: .08em;
-    flex-shrink: 0;
-  }
-  .brand-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: .18em;
-    text-transform: uppercase; color: var(--gray-400);
-  }
-  .hero-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    line-height: 1.05;
-    color: var(--white);
-    letter-spacing: -.02em;
-  }
-  .hero-title em { color: var(--gold); font-style: italic; }
-  .hero-meta {
-    font-size: 12px; color: var(--gray-400);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: .05em;
-    display: flex; gap: 1.5rem; flex-wrap: wrap;
-  }
-  .hero-meta span::before { content: '— '; }
-
-  /* ── Controls bar ── */
-  .controls {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(14,14,14,.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--gray-800);
-    padding: 1rem 0;
-  }
-  .controls-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
-    display: flex; gap: .75rem; align-items: center; flex-wrap: wrap;
-  }
-  .search-wrap {
-    flex: 1; min-width: 220px; position: relative;
-  }
-  .search-wrap svg {
-    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-    width: 15px; height: 15px; stroke: var(--gray-400); fill: none;
-    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-    pointer-events: none;
-  }
-  #search {
-    width: 100%; padding: 9px 12px 9px 36px;
-    background: var(--gray-900); border: 1px solid var(--gray-700);
-    border-radius: var(--radius); color: var(--white);
-    font-family: 'Outfit', sans-serif; font-size: 14px;
-    outline: none; transition: border-color .2s;
-  }
-  #search:focus { border-color: var(--gold); }
-  #search::placeholder { color: var(--gray-600); }
-
-  .filter-pills { display: flex; gap: .5rem; flex-wrap: wrap; }
-  .pill {
-    padding: 7px 14px; border-radius: 999px;
-    font-size: 12px; font-weight: 500; letter-spacing: .04em;
-    cursor: pointer; transition: all .18s; user-select: none;
-    border: 1px solid var(--gray-700); color: var(--gray-400);
-    background: transparent; font-family: 'Outfit', sans-serif;
-  }
-  .pill:hover { border-color: var(--gray-400); color: var(--white); }
-  .pill.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
-  .pill[data-cat="gov"].active   { background: #2D7A4F; border-color: #2D7A4F; color: #fff; }
-  .pill[data-cat="mgmt"].active  { background: #185FA5; border-color: #185FA5; color: #fff; }
-  .pill[data-cat="tech"].active  { background: #8A5C00; border-color: #8A5C00; color: #fff; }
-  .pill[data-cat="risk"].active  { background: #8B1A1A; border-color: #8B1A1A; color: #fff; }
-
-  .count-label {
-    margin-left: auto; font-size: 12px; color: var(--gray-400);
-    font-family: 'DM Mono', monospace; white-space: nowrap;
-  }
-
-  /* ── Main grid ── */
-  main { padding: 2.5rem 0 5rem; }
-
-  .group-block { margin-bottom: 3.5rem; }
-  .group-header {
-    display: flex; align-items: center; gap: 1rem;
-    margin-bottom: 1.25rem; padding-bottom: .75rem;
-    border-bottom: 1px solid var(--gray-800);
-  }
-  .group-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .group-dot.gov  { background: #2D7A4F; }
-  .group-dot.mgmt { background: #185FA5; }
-  .group-dot.tech { background: #C9A84C; }
-  .group-dot.risk { background: #C0392B; }
-  .group-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .15em;
-    text-transform: uppercase; color: var(--gray-400);
-  }
-  .group-count {
-    margin-left: auto; font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--gray-600);
-  }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 1px;
-    background: var(--gray-800);
-    border: 1px solid var(--gray-800);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .card {
-    background: var(--gray-900);
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: background .15s;
-    position: relative;
-  }
-  .card:hover { background: var(--gray-800); }
-  .card.expanded { background: var(--gray-800); }
-
-  .card-top { display: flex; gap: .75rem; align-items: flex-start; }
-  .card-code {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--gray-600);
-    letter-spacing: .08em; flex-shrink: 0;
-    margin-top: 3px;
-  }
-  .card-names { flex: 1; }
-  .card-en {
-    font-size: 15px; font-weight: 500; color: var(--white);
-    line-height: 1.3; margin-bottom: 3px;
-  }
-  .card-vi {
-    font-size: 13px; color: var(--gray-400); line-height: 1.3;
-  }
-  .card-abbr {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--gold); padding: 3px 8px;
-    border: 1px solid var(--gold-dim);
-    border-radius: 4px; flex-shrink: 0;
-    align-self: flex-start; margin-top: 2px;
-    background: rgba(201,168,76,.08);
-  }
-
-  .card-expand-icon {
-    width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
-    color: var(--gray-600); transition: transform .2s, color .15s;
-  }
-  .card.expanded .card-expand-icon { transform: rotate(45deg); color: var(--gold); }
-
-  .card-body {
-    max-height: 0; overflow: hidden;
-    transition: max-height .3s ease, opacity .25s ease;
-    opacity: 0;
-  }
-  .card.expanded .card-body { max-height: 400px; opacity: 1; }
-
-  .card-body-inner { padding-top: 1rem; border-top: 1px solid var(--gray-800); margin-top: 1rem; }
-
-  .desc-text {
-    font-size: 13.5px; color: var(--gray-200); line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .meta-rows { display: flex; flex-direction: column; gap: .5rem; }
-  .meta-row { display: flex; gap: .75rem; align-items: flex-start; }
-  .meta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--gray-600);
-    width: 72px; flex-shrink: 0; padding-top: 1px;
-  }
-  .meta-val { font-size: 12.5px; color: var(--gray-300); line-height: 1.5; }
-  .meta-val.law-tag { color: var(--gold-light); }
-  .meta-val.syn-tag { font-style: italic; color: var(--gray-400); }
-
-  /* ── Empty state ── */
-  .empty {
-    text-align: center; padding: 5rem 2rem;
-    display: none;
-  }
-  .empty.show { display: block; }
-  .empty-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: .4; }
-  .empty-msg { color: var(--gray-600); font-size: 14px; }
-
-  /* ── Footer ── */
-  footer {
-    border-top: 1px solid var(--gray-800);
-    padding: 2rem 0;
-  }
-  .footer-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-brand {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .1em; color: var(--gray-600);
-  }
-  .footer-note { font-size: 12px; color: var(--gray-700); }
-
-  /* ── Highlight match ── */
-  mark {
-    background: rgba(201,168,76,.25);
-    color: var(--gold-light);
-    border-radius: 2px; padding: 0 1px;
-  }
-
-  /* ── Scroll to top ── */
-  #top-btn {
-    position: fixed; bottom: 2rem; right: 2rem;
-    width: 40px; height: 40px; z-index: 100;
-    background: var(--gray-800); border: 1px solid var(--gray-700);
-    border-radius: 50%; cursor: pointer;
-    display: grid; place-items: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity .2s, background .15s;
-  }
-  #top-btn.show { opacity: 1; pointer-events: all; }
-  #top-btn:hover { background: var(--gray-700); }
-  #top-btn svg { width: 16px; height: 16px; stroke: var(--gray-400); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    .site-wrap, .controls-inner, .footer-inner { padding: 0 1rem; }
-    header { flex-direction: column; align-items: flex-start; padding: 2rem 0 1.5rem; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .hero-meta { gap: .75rem; }
-  }
-
-  /* ── Fade in animation ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .group-block { animation: fadeUp .4s ease both; }
-  .group-block:nth-child(1) { animation-delay: .05s; }
-  .group-block:nth-child(2) { animation-delay: .10s; }
-  .group-block:nth-child(3) { animation-delay: .15s; }
-  .group-block:nth-child(4) { animation-delay: .20s; }
+:root{--gold:#C9A84C;--gold-l:#E8C97A;--gold-d:#7A6228;--black:#0E0E0E;--g900:#1A1A1A;--g800:#242424;--g700:#333333;--g600:#4A4A4A;--g500:#666666;--g400:#888888;--g300:#AAAAAA;--g200:#CCCCCC;--white:#FAFAF8;--r:6px;--rl:12px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 2rem}
+/* Header */
+header{padding:2.5rem 0 1.75rem;border-bottom:1px solid var(--g800)}
+.hdr-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.brand-mark{width:38px;height:38px;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.06em;flex-shrink:0}
+.brand-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--g400)}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4.5vw,3rem);line-height:1.08;letter-spacing:-.02em}
+.hero-title em{color:var(--gold);font-style:italic}
+.hero-sub{margin-top:.6rem;font-size:12px;color:var(--g400);font-family:'DM Mono',monospace;letter-spacing:.04em;display:flex;gap:1.25rem;flex-wrap:wrap}
+.hero-sub span::before{content:'— '}
+/* Tab nav */
+.tab-nav{position:sticky;top:0;z-index:60;background:rgba(14,14,14,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--g800)}
+.tab-nav-inner{max-width:1300px;margin:0 auto;padding:0 2rem;display:flex}
+.tab-btn{padding:.85rem 1.4rem;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:var(--g400);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .18s;white-space:nowrap}
+.tab-btn:hover{color:var(--white)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-count{display:inline-block;font-size:10px;font-family:'DM Mono',monospace;background:var(--g800);color:var(--g400);border-radius:10px;padding:1px 6px;margin-left:5px}
+.tab-btn.active .tab-count{background:rgba(201,168,76,.15);color:var(--gold)}
+/* Controls */
+.controls-bar{background:var(--g900);border-bottom:1px solid var(--g800);padding:.7rem 0}
+.controls-inner{max-width:1300px;margin:0 auto;padding:0 2rem;display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.search-wrap{flex:1;min-width:200px;position:relative}
+.search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--g400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.search-inp{width:100%;padding:7px 10px 7px 32px;background:var(--g800);border:1px solid var(--g700);border-radius:var(--r);color:var(--white);font-family:'Outfit',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.search-inp:focus{border-color:var(--gold)}
+.search-inp::placeholder{color:var(--g600)}
+.pills{display:flex;gap:.35rem;flex-wrap:wrap}
+.pill{padding:4px 11px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:.03em;cursor:pointer;transition:all .15s;user-select:none;border:1px solid var(--g700);color:var(--g400);background:transparent;font-family:'Outfit',sans-serif}
+.pill:hover{border-color:var(--g400);color:var(--white)}
+.pill.active{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.pill.pl.active{background:#2D7A4F;border-color:#2D7A4F;color:#fff}
+.pill.pn.active{background:#185FA5;border-color:#185FA5;color:#fff}
+.pill.pq.active{background:#8A5C00;border-color:#8A5C00;color:#fff}
+.pill.pnq.active{background:#8B1A1A;border-color:#8B1A1A;color:#fff}
+.cnt-lbl{margin-left:auto;font-size:11px;color:var(--g500);font-family:'DM Mono',monospace;white-space:nowrap}
+/* Panels */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+/* Term groups */
+main{padding:2rem 0 5rem}
+.group-block{margin-bottom:2.75rem;animation:fadeUp .35s ease both}
+.group-block:nth-child(1){animation-delay:.04s}.group-block:nth-child(2){animation-delay:.08s}
+.group-block:nth-child(3){animation-delay:.12s}.group-block:nth-child(4){animation-delay:.16s}
+.group-block:nth-child(5){animation-delay:.2s}.group-block:nth-child(6){animation-delay:.24s}
+.group-header{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;padding-bottom:.55rem;border-bottom:1px solid var(--g800)}
+.gdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.gdot.vb{background:#4CAF84}.gdot.nb{background:#5BA8E8}.gdot.qd{background:var(--gold)}.gdot.cd{background:#E57373}
+.gtitle{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--g400)}
+.gcnt{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:var(--g600)}
+.expired-badge{font-size:9px;font-family:'DM Mono',monospace;color:#E57373;border:1px solid rgba(229,115,115,.25);padding:1px 6px;border-radius:3px;margin-left:.5rem}
+/* Cards */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:1px;background:var(--g800);border:1px solid var(--g800);border-radius:var(--rl);overflow:hidden}
+.card{background:var(--g900);padding:1.2rem 1.35rem;cursor:pointer;transition:background .13s}
+.card:hover,.card.expanded{background:var(--g800)}
+.card-top{display:flex;gap:.6rem;align-items:flex-start}
+.card-src{font-family:'DM Mono',monospace;font-size:9px;color:var(--g600);letter-spacing:.06em;flex-shrink:0;margin-top:4px;min-width:56px}
+.card-names{flex:1}
+.card-vn{font-size:14px;font-weight:500;color:var(--white);line-height:1.3}
+.card-xi{width:15px;height:15px;flex-shrink:0;color:var(--g600);transition:transform .2s,color .15s;margin-top:4px}
+.card.expanded .card-xi{transform:rotate(45deg);color:var(--gold)}
+.card-body{max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .25s;opacity:0}
+.card.expanded .card-body{max-height:600px;opacity:1}
+.card-body-inner{padding-top:.85rem;border-top:1px solid var(--g800);margin-top:.85rem}
+.desc{font-size:12.5px;color:var(--g200);line-height:1.75;margin-bottom:.8rem}
+.mrows{display:flex;flex-direction:column;gap:.35rem}
+.mrow{display:flex;gap:.6rem;align-items:flex-start}
+.mlbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);width:58px;flex-shrink:0;padding-top:2px}
+.mval{font-size:12px;color:var(--g300);line-height:1.5}
+.mval.src-law{color:var(--gold-l)}
+.mval.src-note{font-style:italic;color:var(--g500)}
+/* Law cards */
+.laws-panel{padding:2rem 0 5rem}
+.law-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:1px;background:var(--g800);border:1px solid var(--g800);border-radius:var(--rl);overflow:hidden;margin-bottom:2.75rem}
+.law-card{background:var(--g900);padding:1.2rem 1.35rem;cursor:pointer;transition:background .13s}
+.law-card:hover,.law-card.expanded{background:var(--g800)}
+.law-card-top{display:flex;gap:.7rem;align-items:flex-start}
+.law-type-badge{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:3px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:3px;letter-spacing:.05em}
+.lt-luat{background:rgba(45,122,79,.18);color:#4CAF84;border:1px solid rgba(45,122,79,.3)}
+.lt-ndcp{background:rgba(25,95,165,.18);color:#5BA8E8;border:1px solid rgba(25,95,165,.3)}
+.lt-qd{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25)}
+.lt-nq{background:rgba(192,57,43,.15);color:#E57373;border:1px solid rgba(192,57,43,.25)}
+.lt-other{background:var(--g800);color:var(--g400);border:1px solid var(--g700)}
+.law-info{flex:1}
+.law-so{font-family:'DM Mono',monospace;font-size:10px;color:var(--g500);margin-bottom:3px;letter-spacing:.06em;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.law-title{font-size:13.5px;font-weight:500;color:var(--white);line-height:1.35;margin-bottom:4px}
+.law-organ{font-size:11px;color:var(--g500)}
+.law-xi{width:15px;height:15px;flex-shrink:0;color:var(--g600);transition:transform .2s,color .15s;margin-top:4px}
+.law-card.expanded .law-xi{transform:rotate(45deg);color:var(--gold)}
+.law-body{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .25s;opacity:0}
+.law-card.expanded .law-body{max-height:500px;opacity:1}
+.law-body-inner{padding-top:.85rem;border-top:1px solid var(--g800);margin-top:.85rem}
+.law-desc{font-size:12.5px;color:var(--g200);line-height:1.7;margin-bottom:.8rem}
+.law-link{display:inline-flex;align-items:center;gap:.4rem;font-size:11px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;padding:4px 9px;border:1px solid rgba(201,168,76,.25);border-radius:4px;transition:all .15s}
+.law-link:hover{background:rgba(201,168,76,.08);border-color:var(--gold)}
+.law-link svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.eff-tag{font-family:'DM Mono',monospace;font-size:9px;border-radius:3px;padding:2px 6px}
+.eff-tag.active{background:rgba(76,175,132,.1);color:#4CAF84;border:1px solid rgba(76,175,132,.2)}
+.eff-tag.expired{background:rgba(229,115,115,.1);color:#E57373;border:1px solid rgba(229,115,115,.2)}
+.eff-tag.unknown{background:var(--g800);color:var(--g500);border:1px solid var(--g700)}
+/* Sec header (laws) */
+.sec-hdr{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;padding-bottom:.55rem;border-bottom:1px solid var(--g800)}
+.sec-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sec-luat{background:#4CAF84}.sec-ndcp{background:#5BA8E8}.sec-qd{background:var(--gold)}.sec-nq{background:#E57373}
+.sec-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--g400)}
+.sec-cnt{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:var(--g600)}
+/* Misc */
+.empty{text-align:center;padding:4rem 2rem;display:none}
+.empty.show{display:block}
+.empty-ico{font-size:2rem;opacity:.35;margin-bottom:.65rem}
+.empty-msg{color:var(--g600);font-size:13px}
+footer{border-top:1px solid var(--g800);padding:1.5rem 0}
+.footer-inner{max-width:1300px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+.footer-brand{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--g600)}
+.footer-note{font-size:11px;color:var(--g700)}
+#top-btn{position:fixed;bottom:1.75rem;right:1.75rem;width:38px;height:38px;z-index:100;background:var(--g800);border:1px solid var(--g700);border-radius:50%;cursor:pointer;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s}
+#top-btn.show{opacity:1;pointer-events:all}
+#top-btn:hover{background:var(--g700)}
+#top-btn svg{width:14px;height:14px;stroke:var(--g400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+mark{background:rgba(201,168,76,.22);color:var(--gold-l);border-radius:2px;padding:0 1px}
+@media(max-width:640px){.wrap,.controls-inner,.footer-inner,.tab-nav-inner{padding:0 1rem}header{padding:1.75rem 0 1.25rem}.cards-grid,.law-grid{grid-template-columns:1fr}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
-
-<div class="site-wrap">
-  <header>
-    <div>
-      <div class="brand" style="margin-bottom:1.25rem">
-        <div class="brand-mark">DG</div>
-        <div class="brand-name">DGNA.VN</div>
-      </div>
-      <h1 class="hero-title">Từ Điển<br><em>Thuật Ngữ</em><br>Quản Trị Dữ Liệu</h1>
-    </div>
-    <div class="hero-meta">
-      <span>55 thuật ngữ</span>
-      <span>Chuẩn DAMA-DMBOK</span>
-      <span>Đối chiếu pháp luật Việt Nam</span>
-    </div>
-  </header>
+<div class="wrap">
+<header>
+  <div class="hdr-top"><div class="brand-mark">DG</div><div class="brand-name">DGNA.VN</div></div>
+  <h1 class="hero-title">Từ Điển <em>Dữ Liệu</em> &amp; Văn Bản Pháp Luật</h1>
+  <div class="hero-sub"><span id="stat-t">-- thuật ngữ</span><span id="stat-l">-- văn bản</span><span>Pháp luật Việt Nam • DAMA-DMBOK</span></div>
+</header>
 </div>
 
-<div class="controls">
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('terms',this)">Thuật ngữ <span class="tab-count" id="tc-t">--</span></button>
+    <button class="tab-btn" onclick="switchTab('laws',this)">Văn bản pháp luật <span class="tab-count" id="tc-l">--</span></button>
+  </div>
+</div>
+
+<div class="controls-bar">
   <div class="controls-inner">
     <div class="search-wrap">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="search" type="text" placeholder="Tìm kiếm thuật ngữ, viết tắt, mô tả...">
+      <input id="search" class="search-inp" type="text" placeholder="Tìm kiếm...">
     </div>
-    <div class="filter-pills">
-      <button class="pill active" data-cat="all">Tất cả</button>
-      <button class="pill" data-cat="gov">Quản trị</button>
-      <button class="pill" data-cat="mgmt">Quản lý DL</button>
-      <button class="pill" data-cat="tech">Kỹ thuật</button>
-      <button class="pill" data-cat="risk">Tuân thủ</button>
+    <div class="pills" id="pt">
+      <button class="pill active" data-src="all">Tất cả</button>
+      <button class="pill" data-src="91/2025/QH15">Luật BVDLCN</button>
+      <button class="pill" data-src="60/2024/QH15">Luật Dữ liệu</button>
+      <button class="pill" data-src="278/2025/NĐ-CP">NĐ 278/2025</button>
+      <button class="pill" data-src="47/2020/NĐ-CP">NĐ 47/2020</button>
+      <button class="pill" data-src="20/2023/QH15">Luật GDĐT</button>
     </div>
-    <span class="count-label" id="count-label">55 thuật ngữ</span>
+    <div class="pills" id="pl" style="display:none">
+      <button class="pill active" data-lt="all">Tất cả</button>
+      <button class="pill pl" data-lt="Luật">Luật</button>
+      <button class="pill pn" data-lt="Nghị định">Nghị định</button>
+      <button class="pill pq" data-lt="Quyết định">Quyết định</button>
+      <button class="pill pnq" data-lt="Nghị quyết">Nghị quyết</button>
+    </div>
+    <span class="cnt-lbl" id="cnt">-- mục</span>
   </div>
 </div>
 
-<div class="site-wrap">
-  <main id="main-content"></main>
-  <div class="empty" id="empty-state">
-    <div class="empty-icon">◎</div>
-    <p class="empty-msg">Không tìm thấy thuật ngữ phù hợp</p>
-  </div>
+<div class="tab-panel active" id="panel-terms">
+  <div class="wrap"><main id="tc"></main><div class="empty" id="et"><div class="empty-ico">◎</div><p class="empty-msg">Không tìm thấy kết quả</p></div></div>
+</div>
+<div class="tab-panel" id="panel-laws">
+  <div class="wrap"><div class="laws-panel" id="lc"></div><div class="empty" id="el"><div class="empty-ico">◎</div><p class="empty-msg">Không tìm thấy kết quả</p></div></div>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <span class="footer-brand">DGNA.VN — Data Governance & Architecture Vietnam</span>
-    <span class="footer-note">Dựa trên DAMA-DMBOK 2nd Edition · Luật Dữ liệu 60/2024/QH15 · Luật BVDLCN 91/2025/QH15 · QĐ 2439/QĐ-TTg</span>
+    <span class="footer-brand">DGNA.VN — Data Governance &amp; Architecture Vietnam</span>
+    <span class="footer-note">Luật DL 60/2024 · Luật BVDLCN 91/2025 · NĐ 278/2025 · NĐ 47/2020 · QĐ 2439/QĐ-TTg</span>
   </div>
 </footer>
-
-<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Lên đầu trang">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
 
 <script>
-const TERMS = [
-  {id:"DG-001",cat:"gov",en:"Data Governance",vi:"Quản trị dữ liệu",desc:"Việc thực thi quyền lực, kiểm soát và ra quyết định chung (lập kế hoạch, giám sát, thực thi) về quản lý tài sản dữ liệu của tổ chức.",abbr:"DG",law:"Luật Dữ liệu 60/2024/QH15; QĐ 2439/QĐ-TTg",syn:"Data Stewardship (nghĩa rộng)"},
-  {id:"DG-002",cat:"gov",en:"Data Asset",vi:"Tài sản dữ liệu",desc:"Dữ liệu được tổ chức xác định là có giá trị kinh tế, vận hành hoặc chiến lược, cần được quản lý và bảo vệ.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15",syn:"Data Resource"},
-  {id:"DG-003",cat:"gov",en:"Data Policy",vi:"Chính sách dữ liệu",desc:"Tập hợp các quy tắc, nguyên tắc chỉ đạo việc thu thập, sử dụng, chia sẻ và bảo vệ dữ liệu trong tổ chức.",abbr:"",law:"QĐ 2439/QĐ-TTg; Luật Dữ liệu 60/2024/QH15",syn:""},
-  {id:"DG-004",cat:"gov",en:"Data Strategy",vi:"Chiến lược dữ liệu",desc:"Kế hoạch tổng thể xác định mục tiêu, tầm nhìn, ưu tiên và lộ trình phát triển năng lực dữ liệu của tổ chức.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DG-005",cat:"gov",en:"Data Council",vi:"Hội đồng Dữ liệu",desc:"Cơ quan ra quyết định cấp cao về dữ liệu trong tổ chức, gồm các lãnh đạo đại diện cho nghiệp vụ và kỹ thuật. Phê duyệt chính sách, giải quyết xung đột về dữ liệu.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Governance Board, Data Steering Committee"},
-  {id:"DG-006",cat:"gov",en:"Chief Data Officer",vi:"Giám đốc Dữ liệu",desc:"Lãnh đạo cấp C chịu trách nhiệm toàn bộ chiến lược và quản trị dữ liệu của tổ chức.",abbr:"CDO",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DG-007",cat:"gov",en:"Data Owner",vi:"Chủ quản dữ liệu / Người sở hữu dữ liệu",desc:"Cá nhân/đơn vị thuộc nghiệp vụ chịu trách nhiệm về ý nghĩa, chất lượng và quyết định sử dụng một tập dữ liệu cụ thể.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Accountable"},
-  {id:"DG-008",cat:"gov",en:"Data Steward",vi:"Người quản lý dữ liệu",desc:"Người thực hiện các nhiệm vụ quản trị dữ liệu hàng ngày: định nghĩa, giám sát chất lượng, duy trì metadata, điều phối giữa nghiệp vụ và IT.",abbr:"",law:"",syn:""},
-  {id:"DG-009",cat:"gov",en:"Business Glossary",vi:"Từ điển nghiệp vụ",desc:"Tập hợp các thuật ngữ nghiệp vụ được định nghĩa thống nhất, được phê duyệt bởi Data Owner, làm chuẩn chung cho toàn tổ chức.",abbr:"",law:"QĐ 2439/QĐ-TTg (Từ điển dữ liệu quốc gia)",syn:"Enterprise Glossary"},
-  {id:"DG-010",cat:"gov",en:"Data Accountability",vi:"Trách nhiệm giải trình về dữ liệu",desc:"Nghĩa vụ của cá nhân/đơn vị chịu trách nhiệm trước tổ chức khi dữ liệu sai, thiếu hoặc bị lạm dụng.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15; NĐ 13/2023/NĐ-CP",syn:""},
-  {id:"DG-011",cat:"gov",en:"Data Decision Rights",vi:"Quyền quyết định về dữ liệu",desc:"Xác định ai có thẩm quyền ra quyết định về dữ liệu, trong tình huống nào và theo quy trình nào.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Authority"},
-  {id:"DG-012",cat:"gov",en:"Data Capability Landscape",vi:"Khung năng lực dữ liệu",desc:"Mô hình tổng thể mô tả các năng lực cần có để tổ chức quản trị và khai thác dữ liệu hiệu quả, từ chiến lược đến vận hành.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Capability Framework"},
-  {id:"DG-013",cat:"gov",en:"Data Maturity",vi:"Mức độ trưởng thành về dữ liệu",desc:"Mức độ phát triển năng lực dữ liệu của tổ chức, thường được đo theo thang điểm từ 1 (sơ khai) đến 5 (tối ưu hóa).",abbr:"",law:"",syn:"Data Capability Maturity"},
-  {id:"DG-014",cat:"gov",en:"DCAM",vi:"Mô hình đánh giá năng lực quản lý dữ liệu",desc:"Khung đánh giá mức độ trưởng thành dữ liệu do EDM Council phát triển, tập trung vào tuân thủ và kiểm soát rủi ro dữ liệu.",abbr:"DCAM",law:"",syn:"Data Management Capability Assessment Model"},
-  {id:"DG-015",cat:"gov",en:"TOGAF",vi:"Khung kiến trúc tổng thể doanh nghiệp",desc:"Khung kiến trúc doanh nghiệp (The Open Group Architecture Framework) kết nối dữ liệu, công nghệ và nghiệp vụ quản lý.",abbr:"TOGAF",law:"",syn:"The Open Group Architecture Framework"},
-  {id:"DG-016",cat:"gov",en:"Data Adoption Rate",vi:"Tỷ lệ áp dụng quản trị dữ liệu",desc:"Mức độ các đơn vị/cá nhân trong tổ chức thực sự tuân thủ và sử dụng các chính sách, quy trình quản trị dữ liệu đã ban hành.",abbr:"",law:"",syn:""},
-  {id:"DM-001",cat:"mgmt",en:"Data Management",vi:"Quản lý dữ liệu",desc:"Tổng thể các hoạt động lập kế hoạch, kiểm soát và cung cấp để thu thập, lưu trữ, bảo vệ và khai thác dữ liệu hiệu quả theo DAMA-DMBOK.",abbr:"DM",law:"Luật Dữ liệu 60/2024/QH15",syn:""},
-  {id:"DM-002",cat:"mgmt",en:"Metadata",vi:"Siêu dữ liệu",desc:"Dữ liệu mô tả dữ liệu khác. Bao gồm siêu dữ liệu nghiệp vụ, kỹ thuật, vận hành và truy gốc.",abbr:"",law:"QĐ 2439/QĐ-TTg; Luật Dữ liệu 60/2024/QH15",syn:""},
-  {id:"DM-003",cat:"mgmt",en:"Metadata Management",vi:"Quản lý siêu dữ liệu",desc:"Quá trình tạo lập, duy trì và quản lý toàn bộ siêu dữ liệu của tổ chức, bao gồm từ điển dữ liệu, danh mục dữ liệu và lineage.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DM-004",cat:"mgmt",en:"Data Dictionary",vi:"Từ điển dữ liệu",desc:"Kho lưu trữ mô tả chi tiết về các phần tử dữ liệu: tên, định nghĩa, kiểu dữ liệu, nguồn gốc, quy tắc nghiệp vụ và mối quan hệ.",abbr:"",law:"QĐ 2439/QĐ-TTg (Từ điển dữ liệu quốc gia)",syn:"Data Element Dictionary"},
-  {id:"DM-005",cat:"mgmt",en:"Data Catalog",vi:"Danh mục dữ liệu",desc:"Hệ thống kiểm kê và tìm kiếm tài sản dữ liệu của tổ chức, tích hợp metadata, lineage, phân loại và thông tin chủ quản.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Inventory"},
-  {id:"DM-006",cat:"mgmt",en:"Data Quality",vi:"Chất lượng dữ liệu",desc:"Mức độ dữ liệu đáp ứng các tiêu chí: chính xác, đầy đủ, nhất quán, kịp thời, duy nhất và hợp lệ để phục vụ mục đích sử dụng.",abbr:"DQ",law:"Luật Dữ liệu 60/2024/QH15",syn:""},
-  {id:"DM-007",cat:"mgmt",en:"Data Lineage",vi:"Nguồn gốc / Truy gốc dữ liệu",desc:"Khả năng truy vết toàn bộ hành trình của dữ liệu từ nguồn gốc qua các phép chuyển đổi đến đích cuối, đảm bảo tính minh bạch và kiểm toán.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15",syn:"Data Provenance, Data Traceability"},
-  {id:"DM-008",cat:"mgmt",en:"Master Data",vi:"Dữ liệu Chủ",desc:"Dữ liệu cốt lõi dùng chung trong toàn tổ chức, mô tả các thực thể nghiệp vụ quan trọng như khách hàng, sản phẩm, tổ chức, địa lý.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DM-009",cat:"mgmt",en:"Master Data Management",vi:"Quản lý dữ liệu Chủ",desc:"Quy trình và công nghệ đảm bảo dữ liệu chủ được tạo lập, chuẩn hóa, đồng bộ và phân phối thống nhất trên toàn tổ chức.",abbr:"MDM",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DM-010",cat:"mgmt",en:"Reference Data",vi:"Dữ liệu Tham chiếu",desc:"Tập hợp các giá trị được chuẩn hóa dùng để phân loại hoặc mô tả dữ liệu khác, ví dụ: danh mục mã quốc gia, danh mục ngành nghề.",abbr:"RD",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DM-011",cat:"mgmt",en:"Reference Data Management",vi:"Quản lý dữ liệu Tham chiếu",desc:"Quản lý các danh mục, bảng mã dùng chung nhằm đảm bảo nhất quán về phân loại dữ liệu trong toàn tổ chức.",abbr:"RDM",law:"QĐ 2439/QĐ-TTg",syn:""},
-  {id:"DM-012",cat:"mgmt",en:"Data Architecture",vi:"Kiến trúc dữ liệu",desc:"Thiết kế tổng thể định nghĩa cách dữ liệu được thu thập, lưu trữ, tích hợp, quản lý và sử dụng trong tổ chức.",abbr:"",law:"QĐ 2439/QĐ-TTg (Khung Kiến trúc dữ liệu quốc gia)",syn:""},
-  {id:"DM-013",cat:"mgmt",en:"Data Model",vi:"Mô hình dữ liệu",desc:"Biểu diễn trừu tượng cấu trúc và mối quan hệ giữa các phần tử dữ liệu, bao gồm mô hình khái niệm, logic và vật lý.",abbr:"",law:"",syn:""},
-  {id:"DM-014",cat:"mgmt",en:"Data Domain",vi:"Miền dữ liệu",desc:"Nhóm các tài sản dữ liệu liên quan theo chủ đề nghiệp vụ, ví dụ: Customer, Product, Finance. Là đơn vị tổ chức cơ bản trong data governance.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Subject Area"},
-  {id:"DM-015",cat:"mgmt",en:"Data Lifecycle Management",vi:"Quản lý vòng đời dữ liệu",desc:"Quản lý dữ liệu qua toàn bộ vòng đời: tạo lập, lưu trữ, sử dụng, chia sẻ, lưu trữ lâu dài và xóa bỏ.",abbr:"DLM",law:"Luật Dữ liệu 60/2024/QH15",syn:""},
-  {id:"DM-016",cat:"mgmt",en:"Data Integration",vi:"Tích hợp dữ liệu",desc:"Quy trình kết hợp dữ liệu từ nhiều nguồn khác nhau thành một cái nhìn thống nhất, phục vụ phân tích và vận hành.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15",syn:"Data Interoperability (nghĩa rộng)"},
-  {id:"DM-017",cat:"mgmt",en:"Data Taxonomy",vi:"Phân loại dữ liệu / Bản đồ dữ liệu",desc:"Hệ thống phân cấp và phân loại dữ liệu theo các tiêu chí nhất định, giúp tổ chức và tìm kiếm dữ liệu hiệu quả.",abbr:"",law:"QĐ 2439/QĐ-TTg",syn:"Data Classification Scheme"},
-  {id:"DM-018",cat:"mgmt",en:"Data Reconciliation",vi:"Đối chiếu / Cân đối dữ liệu",desc:"Quá trình so sánh và kiểm tra tính nhất quán của dữ liệu giữa các hệ thống hoặc nguồn khác nhau để phát hiện sai lệch.",abbr:"",law:"",syn:""},
-  {id:"DM-019",cat:"mgmt",en:"Data as a Service",vi:"Dữ liệu như một dịch vụ",desc:"Mô hình cung cấp dữ liệu qua API hoặc nền tảng trung tâm, cho phép các đơn vị tiêu thụ dữ liệu theo nhu cầu mà không cần quản lý hạ tầng.",abbr:"DaaS",law:"",syn:""},
-  {id:"DM-020",cat:"mgmt",en:"Data Democratization",vi:"Dân chủ hóa dữ liệu",desc:"Quá trình mở rộng khả năng truy cập và sử dụng dữ liệu cho toàn bộ nhân viên nghiệp vụ, không chỉ riêng bộ phận IT.",abbr:"",law:"",syn:""},
-  {id:"DM-021",cat:"mgmt",en:"Customer Data",vi:"Dữ liệu khách hàng",desc:"Tập hợp dữ liệu mô tả khách hàng của tổ chức, bao gồm thông tin định danh, giao dịch, hành vi và tương tác.",abbr:"",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:""},
-  {id:"DM-022",cat:"mgmt",en:"Data Element",vi:"Phần tử dữ liệu / Điểm dữ liệu",desc:"Đơn vị dữ liệu nhỏ nhất có ý nghĩa trong một hệ thống, được định nghĩa rõ về tên, kiểu, định dạng và nghĩa nghiệp vụ.",abbr:"",law:"",syn:"Data Field, Data Attribute"},
-  {id:"DM-023",cat:"mgmt",en:"Business Intelligence",vi:"Trí tuệ kinh doanh",desc:"Tập hợp công nghệ, quy trình và thực hành chuyển đổi dữ liệu thành thông tin hỗ trợ ra quyết định kinh doanh.",abbr:"BI",law:"",syn:""},
-  {id:"DM-024",cat:"mgmt",en:"Data Warehouse",vi:"Kho dữ liệu",desc:"Hệ thống lưu trữ dữ liệu tích hợp từ nhiều nguồn, được tổ chức theo chủ đề và tối ưu hóa cho truy vấn phân tích.",abbr:"DWH",law:"",syn:""},
-  {id:"TE-001",cat:"tech",en:"ETL (Extract, Transform, Load)",vi:"Trích xuất – Chuyển đổi – Nạp dữ liệu",desc:"Quy trình kỹ thuật trích xuất dữ liệu từ nguồn, chuyển đổi theo quy tắc nghiệp vụ và nạp vào hệ thống đích.",abbr:"ETL",law:"",syn:"ELT (biến thể hiện đại)"},
-  {id:"TE-002",cat:"tech",en:"Change Data Capture",vi:"Bắt thay đổi dữ liệu",desc:"Kỹ thuật theo dõi và ghi nhận các thay đổi trong cơ sở dữ liệu nguồn để đồng bộ dữ liệu theo thời gian thực.",abbr:"CDC",law:"",syn:""},
-  {id:"TE-003",cat:"tech",en:"Data Lake / Lakehouse",vi:"Hồ dữ liệu / Kho-hồ dữ liệu",desc:"Nền tảng lưu trữ tập trung lượng lớn dữ liệu thô ở định dạng gốc. Lakehouse kết hợp tính linh hoạt của Data Lake với khả năng truy vấn của Data Warehouse.",abbr:"",law:"",syn:""},
-  {id:"TE-004",cat:"tech",en:"Data Platform",vi:"Nền tảng dữ liệu",desc:"Hệ sinh thái công nghệ tích hợp phục vụ toàn bộ vòng đời dữ liệu, từ thu thập, xử lý, lưu trữ đến phân tích và phân phối.",abbr:"",law:"",syn:""},
-  {id:"TE-005",cat:"tech",en:"Personally Identifiable Information",vi:"Dữ liệu cá nhân / Thông tin nhận dạng cá nhân",desc:"Bất kỳ thông tin nào có thể được sử dụng để xác định danh tính một cá nhân cụ thể, trực tiếp hoặc gián tiếp.",abbr:"PII",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:"Personal Data (GDPR)"},
-  {id:"TE-006",cat:"tech",en:"Data Security",vi:"Bảo mật dữ liệu",desc:"Tổng thể các biện pháp kỹ thuật và quản lý bảo vệ dữ liệu khỏi truy cập trái phép, rò rỉ, thay đổi hoặc phá hủy.",abbr:"",law:"Luật An ninh mạng; NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:""},
-  {id:"TE-007",cat:"tech",en:"Sensitive Zone",vi:"Vùng dữ liệu nhạy cảm",desc:"Phân vùng lưu trữ dữ liệu có mức độ bảo mật cao nhất, chứa PII và dữ liệu kinh doanh chiến lược, được kiểm soát truy cập nghiêm ngặt.",abbr:"",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:""},
-  {id:"TE-008",cat:"tech",en:"Real-time Data",vi:"Dữ liệu thời gian thực",desc:"Dữ liệu được xử lý và cung cấp ngay lập tức hoặc gần như ngay lập tức sau khi sự kiện xảy ra, độ trễ thường dưới vài giây.",abbr:"",law:"",syn:"Streaming Data"},
-  {id:"TE-009",cat:"tech",en:"Big Data",vi:"Dữ liệu lớn",desc:"Tập dữ liệu có khối lượng, tốc độ, đa dạng vượt quá khả năng xử lý của hệ thống truyền thống, đặc trưng bởi 3V hoặc 5V.",abbr:"",law:"",syn:""},
-  {id:"TE-010",cat:"tech",en:"Data API",vi:"Giao diện lập trình ứng dụng dữ liệu",desc:"Giao diện cho phép các ứng dụng truy cập và trao đổi dữ liệu theo chuẩn, thường qua REST hoặc GraphQL.",abbr:"API",law:"",syn:""},
-  {id:"TE-011",cat:"tech",en:"Unstructured Data",vi:"Dữ liệu phi cấu trúc",desc:"Dữ liệu không có định dạng hoặc lược đồ xác định trước, như văn bản tự do, hình ảnh, âm thanh, video.",abbr:"",law:"",syn:""},
-  {id:"RC-001",cat:"risk",en:"Data Compliance",vi:"Tuân thủ dữ liệu",desc:"Đảm bảo hoạt động thu thập, xử lý và lưu trữ dữ liệu tuân theo các quy định pháp luật, tiêu chuẩn ngành và chính sách nội bộ.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15; Luật BVDLCN 91/2025/QH15; NĐ 13/2023/NĐ-CP",syn:""},
-  {id:"RC-002",cat:"risk",en:"Personal Data Protection",vi:"Bảo vệ dữ liệu cá nhân",desc:"Tổng thể biện pháp pháp lý và kỹ thuật bảo vệ quyền riêng tư và dữ liệu cá nhân của người dùng.",abbr:"BVDLCN",law:"Luật BVDLCN 91/2025/QH15; NĐ 13/2023/NĐ-CP",syn:"Data Privacy"},
-  {id:"RC-003",cat:"risk",en:"Consent",vi:"Sự đồng ý / Chấp thuận",desc:"Sự cho phép rõ ràng của chủ thể dữ liệu cho phép tổ chức thu thập, xử lý dữ liệu cá nhân của họ theo mục đích đã nêu.",abbr:"",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:""},
-  {id:"RC-004",cat:"risk",en:"Cross-border Data Transfer",vi:"Chuyển giao dữ liệu xuyên biên giới",desc:"Việc truyền, chia sẻ hoặc cung cấp dữ liệu ra ngoài lãnh thổ quốc gia nơi dữ liệu được thu thập.",abbr:"",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:""},
-  {id:"RC-005",cat:"risk",en:"Data Breach",vi:"Vi phạm dữ liệu / Rò rỉ dữ liệu",desc:"Sự cố bảo mật dẫn đến truy cập, tiết lộ, thay đổi hoặc phá hủy dữ liệu trái phép, gây tổn hại cho tổ chức hoặc cá nhân.",abbr:"",law:"NĐ 13/2023/NĐ-CP; Luật BVDLCN 91/2025/QH15",syn:"Data Incident"},
-  {id:"RC-006",cat:"risk",en:"GDPR",vi:"Quy định bảo vệ dữ liệu chung (EU)",desc:"Quy định bảo vệ dữ liệu cá nhân của Liên minh châu Âu, có hiệu lực từ 2018. Áp dụng cho mọi tổ chức xử lý dữ liệu công dân EU.",abbr:"GDPR",law:"",syn:"General Data Protection Regulation"},
-  {id:"RC-007",cat:"risk",en:"Data Audit",vi:"Kiểm toán dữ liệu",desc:"Đánh giá độc lập và có hệ thống về tính chính xác, đầy đủ, bảo mật và tuân thủ của dữ liệu và quy trình quản lý dữ liệu.",abbr:"",law:"Luật Dữ liệu 60/2024/QH15; QĐ 2439/QĐ-TTg",syn:"Data Assessment"},
-  {id:"RC-008",cat:"risk",en:"Data Incident",vi:"Sự cố dữ liệu",desc:"Sự kiện bất thường ảnh hưởng đến tính sẵn sàng, toàn vẹn hoặc bảo mật của dữ liệu, cần được xử lý theo quy trình ứng phó sự cố.",abbr:"",law:"NĐ 13/2023/NĐ-CP",syn:"Data Breach (trường hợp có rò rỉ)"},
+const T=[
+  {s:"60/2024/QH15",v:"Dữ liệu số",d:"Dữ liệu về sự vật, hiện tượng, sự kiện, bao gồm một hoặc kết hợp các dạng âm thanh, hình ảnh, chữ số, chữ viết, ký hiệu được thể hiện dưới dạng kỹ thuật số.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu dùng chung",d:"Dữ liệu được tiếp cận, chia sẻ, khai thác, sử dụng chung trong các cơ quan Đảng, Nhà nước, Ủy ban Mặt trận Tổ quốc Việt Nam và các tổ chức chính trị - xã hội.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu dùng riêng",d:"Dữ liệu được tiếp cận, chia sẻ, khai thác, sử dụng trong phạm vi nội bộ của cơ quan Đảng, Nhà nước, Ủy ban Mặt trận Tổ quốc Việt Nam và các tổ chức chính trị - xã hội.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu mở",d:"Dữ liệu mà mọi cơ quan, tổ chức, cá nhân có nhu cầu đều được tiếp cận, chia sẻ, khai thác, sử dụng.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu gốc",d:"Dữ liệu được tạo lập trong quá trình hoạt động của cơ quan, tổ chức, cá nhân hoặc thu thập, tạo lập từ số hóa bản chính giấy tờ, tài liệu, các dạng vật chất khác.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu quan trọng",d:"Dữ liệu có thể tác động đến quốc phòng, an ninh, đối ngoại, kinh tế vĩ mô, ổn định xã hội, sức khỏe và an toàn cộng đồng thuộc danh mục do Thủ tướng Chính phủ ban hành.",n:""},
+  {s:"60/2024/QH15",v:"Dữ liệu cốt lõi",d:"Dữ liệu quan trọng trực tiếp tác động đến quốc phòng, an ninh, đối ngoại, kinh tế vĩ mô, ổn định xã hội, sức khỏe và an toàn cộng đồng thuộc danh mục do Thủ tướng Chính phủ ban hành.",n:""},
+  {s:"60/2024/QH15",v:"Xử lý dữ liệu",d:"Quá trình tiếp nhận, chuyển đổi, tổ chức dữ liệu và các hoạt động khác về dữ liệu để phục vụ hoạt động của cơ quan, tổ chức, cá nhân.",n:""},
+  {s:"60/2024/QH15",v:"Cơ sở dữ liệu",d:"Tập hợp các dữ liệu được sắp xếp, tổ chức để truy cập, khai thác, chia sẻ, quản lý và cập nhật.",n:""},
+  {s:"60/2024/QH15",v:"Cơ sở dữ liệu tổng hợp quốc gia",d:"Cơ sở dữ liệu được tổng hợp từ cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành và cơ sở dữ liệu khác.",n:""},
+  {s:"60/2024/QH15",v:"Nền tảng chia sẻ, điều phối dữ liệu",d:"Hạ tầng kết nối, tích hợp, chia sẻ và điều phối dữ liệu giữa Trung tâm dữ liệu quốc gia với các cơ quan, tổ chức, cá nhân.",n:""},
+  {s:"60/2024/QH15",v:"Chủ thể dữ liệu",d:"Cơ quan, tổ chức, cá nhân được dữ liệu phản ánh.",n:""},
+  {s:"60/2024/QH15",v:"Chủ quản dữ liệu",d:"Cơ quan, tổ chức, cá nhân thực hiện hoạt động xây dựng, quản lý, vận hành, khai thác dữ liệu theo yêu cầu của chủ sở hữu dữ liệu.",n:""},
+  {s:"60/2024/QH15",v:"Chủ sở hữu dữ liệu",d:"Cơ quan, tổ chức, cá nhân có quyền quyết định việc xây dựng, phát triển, bảo vệ, quản trị, xử lý, sử dụng và trao đổi giá trị của dữ liệu do mình sở hữu.",n:""},
+  {s:"60/2024/QH15",v:"Mã hoá dữ liệu",d:"Việc áp dụng các phương pháp, thuật toán mã hóa hoặc giải pháp kỹ thuật để chuyển đổi dữ liệu từ định dạng nhận biết được sang định dạng không nhận biết được.",n:""},
+  {s:"60/2024/QH15",v:"Giải mã dữ liệu",d:"Việc áp dụng các phương pháp, thuật toán mã hóa hoặc giải pháp kỹ thuật để chuyển đổi dữ liệu được mã hóa từ định dạng không nhận biết được sang định dạng nhận biết được.",n:""},
+  {s:"60/2024/QH15",v:"Điều phối dữ liệu",d:"Hoạt động tổ chức điều động và phân phối dữ liệu, quản lý, giám sát, tối ưu hóa luồng dữ liệu chia sẻ giữa các hệ thống thông tin, cơ sở dữ liệu.",n:""},
+  {s:"91/2025/QH15",v:"Dữ liệu cá nhân",d:"Dữ liệu số hoặc thông tin dưới dạng khác xác định hoặc giúp xác định một con người cụ thể, bao gồm: dữ liệu cá nhân cơ bản và dữ liệu cá nhân nhạy cảm. Dữ liệu cá nhân sau khi khử nhận dạng không còn là dữ liệu cá nhân.",n:"Thay thế định nghĩa tại NĐ 13/2023/NĐ-CP"},
+  {s:"91/2025/QH15",v:"Dữ liệu cá nhân cơ bản",d:"Dữ liệu cá nhân phản ánh các yếu tố nhân thân, lai lịch phổ biến, thường xuyên sử dụng trong các giao dịch, quan hệ xã hội, thuộc danh mục do Chính phủ ban hành.",n:""},
+  {s:"91/2025/QH15",v:"Dữ liệu cá nhân nhạy cảm",d:"Dữ liệu cá nhân gắn liền với quyền riêng tư của cá nhân, khi bị xâm phạm sẽ gây ảnh hưởng trực tiếp đến quyền, lợi ích hợp pháp của cơ quan, tổ chức, cá nhân, thuộc danh mục do Chính phủ ban hành.",n:""},
+  {s:"91/2025/QH15",v:"Bảo vệ dữ liệu cá nhân",d:"Việc cơ quan, tổ chức, cá nhân sử dụng lực lượng, phương tiện, biện pháp để phòng, chống hoạt động xâm phạm dữ liệu cá nhân.",n:""},
+  {s:"91/2025/QH15",v:"Chủ thể dữ liệu cá nhân",d:"Người được dữ liệu cá nhân phản ánh.",n:""},
+  {s:"91/2025/QH15",v:"Xử lý dữ liệu cá nhân",d:"Hoạt động tác động đến dữ liệu cá nhân, bao gồm một hoặc nhiều hoạt động như: thu thập, phân tích, tổng hợp, mã hóa, giải mã, chỉnh sửa, xóa, hủy, khử nhận dạng, cung cấp, công khai, chuyển giao dữ liệu cá nhân và hoạt động khác tác động đến dữ liệu cá nhân.",n:""},
+  {s:"91/2025/QH15",v:"Bên kiểm soát dữ liệu cá nhân",d:"Cơ quan, tổ chức, cá nhân quyết định mục đích và phương tiện xử lý dữ liệu cá nhân.",n:""},
+  {s:"91/2025/QH15",v:"Bên xử lý dữ liệu cá nhân",d:"Cơ quan, tổ chức, cá nhân thực hiện việc xử lý dữ liệu cá nhân theo yêu cầu của bên kiểm soát dữ liệu cá nhân hoặc bên kiểm soát và xử lý dữ liệu cá nhân thông qua hợp đồng.",n:""},
+  {s:"91/2025/QH15",v:"Bên kiểm soát và xử lý dữ liệu cá nhân",d:"Cơ quan, tổ chức, cá nhân quyết định mục đích, phương tiện và trực tiếp xử lý dữ liệu cá nhân.",n:""},
+  {s:"91/2025/QH15",v:"Bên thứ ba",d:"Tổ chức, cá nhân ngoài chủ thể dữ liệu cá nhân, bên kiểm soát, bên kiểm soát và xử lý, bên xử lý dữ liệu cá nhân tham gia vào việc xử lý dữ liệu cá nhân theo quy định của pháp luật.",n:""},
+  {s:"91/2025/QH15",v:"Khử nhận dạng dữ liệu cá nhân",d:"Quá trình thay đổi hoặc xóa thông tin để tạo ra dữ liệu mới không thể xác định hoặc không thể giúp xác định được một con người cụ thể.",n:""},
+  {s:"91/2025/QH15",v:"Đánh giá tác động xử lý dữ liệu cá nhân",d:"Việc phân tích, đánh giá rủi ro có thể xảy ra trong quá trình xử lý dữ liệu cá nhân để áp dụng các biện pháp giảm thiểu rủi ro, bảo vệ dữ liệu cá nhân.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Dữ liệu chủ quốc gia",d:"Dữ liệu chủ được kết nối, chia sẻ, khai thác, sử dụng chung trong các cơ quan Đảng, Nhà nước, Ủy ban Mặt trận Tổ quốc Việt Nam và các tổ chức chính trị - xã hội.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Dữ liệu chủ chuyên ngành",d:"Dữ liệu chủ được kết nối, chia sẻ, khai thác, sử dụng trong phạm vi nội bộ của cơ quan Đảng, Nhà nước, Ủy ban Mặt trận Tổ quốc Việt Nam và các tổ chức chính trị - xã hội.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Kiểm toán dữ liệu",d:"Quá trình đánh giá một cách hệ thống, độc lập và khách quan đối với dữ liệu và hoạt động quản lý, khai thác dữ liệu nhằm bảo đảm tính đầy đủ, chính xác, kịp thời, hợp pháp, bảo mật và khả năng truy xuất của dữ liệu trong toàn bộ vòng đời dữ liệu.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Từ điển dữ liệu dùng chung",d:"Hệ thống tài liệu và công cụ kỹ thuật định nghĩa thống nhất tên gọi, mô tả, định dạng, đơn vị tính, mối liên kết và cách sử dụng của các trường dữ liệu được sử dụng phổ biến giữa các cơ quan, tổ chức trong hệ thống chính trị nhằm bảo đảm kết nối, liên thông và chia sẻ dữ liệu hiệu quả.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Kết nối, chia sẻ dữ liệu bắt buộc",d:"Việc thiết lập kết nối kỹ thuật bắt buộc giữa các hệ thống thông tin, cơ sở dữ liệu trong hệ thống chính trị nhằm chia sẻ, khai thác và sử dụng dữ liệu đã được phân quyền theo quy định, không phụ thuộc vào thỏa thuận riêng giữa các cơ quan, tổ chức.",n:""},
+  {s:"278/2025/NĐ-CP",v:"Mã khóa định danh (data key)",d:"Những điểm dữ liệu đặc biệt giúp định danh chính xác một đối tượng cụ thể, chuẩn hóa cơ chế chống trùng lặp; được chuẩn hóa định dạng, mã hóa, mô tả và phân loại thống nhất; bảo đảm khả năng mở rộng, tích hợp, liên thông.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Dữ liệu số",d:"Dữ liệu dưới dạng ký hiệu, chữ viết, chữ số, hình ảnh, âm thanh hoặc dạng tương tự được biểu diễn bằng tín hiệu số. Dữ liệu số mang thông tin số và được chia sẻ dưới dạng thông điệp dữ liệu.",n:"Định nghĩa theo NĐ 47/2020"},
+  {s:"47/2020/NĐ-CP",v:"Cấu trúc dữ liệu trao đổi",d:"Cấu trúc của thông điệp dữ liệu được trao đổi giữa các hệ thống thông tin, cơ sở dữ liệu.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Dịch vụ chia sẻ dữ liệu",d:"Các dịch vụ cung cấp, chia sẻ dữ liệu cho cơ quan, tổ chức, cá nhân khai thác hoặc thu nhận dữ liệu từ các cơ quan, tổ chức, cá nhân qua các hệ thống thông tin.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Dữ liệu mở của cơ quan nhà nước",d:"Dữ liệu được cơ quan nhà nước có thẩm quyền công bố rộng rãi cho cơ quan, tổ chức, cá nhân tự do sử dụng, tái sử dụng, chia sẻ.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Chia sẻ dữ liệu mặc định",d:"Hình thức chia sẻ các dữ liệu thường xuyên trong cơ quan nhà nước theo quy trình đơn giản, trong đó cơ quan nhà nước chuẩn bị sẵn các dịch vụ chia sẻ dữ liệu và cung cấp dữ liệu đã được chuẩn hóa cấu trúc dữ liệu trao đổi thông qua dịch vụ chia sẻ dữ liệu cho nhiều cơ quan nhà nước sử dụng.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Chia sẻ dữ liệu theo yêu cầu đặc thù",d:"Hình thức chia sẻ dữ liệu cho cơ quan nhà nước khác sử dụng theo yêu cầu riêng đối với dữ liệu không được sử dụng thông dụng bởi nhiều cơ quan nhà nước khác nhau; việc chia sẻ dữ liệu theo hình thức này cần thực hiện các hoạt động phối hợp của các bên về mặt kỹ thuật.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Dữ liệu danh mục dùng chung",d:"Dữ liệu về các danh mục, bảng mã phân loại do cơ quan nhà nước có thẩm quyền ban hành, được sử dụng chung trong các hệ thống thông tin, cơ sở dữ liệu bảo đảm việc tích hợp, trao đổi, chia sẻ dữ liệu đồng bộ, thống nhất.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Định dạng mở",d:"Định dạng của tập tin hoặc thông điệp dữ liệu được quy định theo công bố kỹ thuật của tổ chức hoạt động về tiêu chuẩn và không bị hạn chế khi sử dụng công bố kỹ thuật này.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Dữ liệu chủ (master data)",d:"Dữ liệu chứa thông tin cơ bản nhất để định danh và mô tả các đối tượng thực thể nghiệp vụ cốt lõi và độc lập.",n:""},
+  {s:"47/2020/NĐ-CP",v:"Cổng dữ liệu quốc gia",d:"Điểm đầu mối truy cập thông tin, dữ liệu có địa chỉ data.gov.vn trên mạng Internet phục vụ việc công bố dữ liệu mở, cung cấp thông tin về chia sẻ dữ liệu của cơ quan nhà nước.",n:""},
+  {s:"20/2023/QH15",v:"Giao dịch điện tử",d:"Giao dịch được thực hiện bằng phương tiện điện tử.",n:""},
+  {s:"20/2023/QH15",v:"Phương tiện điện tử",d:"Phần cứng, phần mềm, hệ thống thông tin hoặc phương tiện khác hoạt động dựa trên công nghệ thông tin, công nghệ điện, điện tử, kỹ thuật số, từ tính, truyền dẫn không dây, quang học, điện từ hoặc công nghệ khác tương tự.",n:""},
+  {s:"20/2023/QH15",v:"Môi trường điện tử",d:"Môi trường mạng viễn thông, mạng Internet, mạng máy tính, hệ thống thông tin.",n:""},
+  {s:"20/2023/QH15",v:"Thông điệp dữ liệu",d:"Thông tin được tạo ra, được gửi, được nhận, được lưu trữ bằng phương tiện điện tử.",n:""},
+  {s:"20/2023/QH15",v:"Chứng thư điện tử",d:"Giấy phép, giấy chứng nhận, chứng chỉ, văn bản xác nhận, văn bản chấp thuận khác do cơ quan, tổ chức có thẩm quyền phát hành dưới dạng dữ liệu điện tử.",n:""},
+  {s:"20/2023/QH15",v:"Dữ liệu điện tử",d:"Dữ liệu được tạo ra, xử lý, lưu trữ bằng phương tiện điện tử.",n:""},
+  {s:"20/2023/QH15",v:"Dữ liệu chủ",d:"Dữ liệu chứa thông tin cơ bản nhất để mô tả một đối tượng cụ thể, làm cơ sở để tham chiếu, đồng bộ giữa các cơ sở dữ liệu hoặc các tập dữ liệu khác nhau.",n:"Định nghĩa theo Luật GDĐT 2023"},
+  {s:"20/2023/QH15",v:"Cơ sở dữ liệu",d:"Tập hợp các dữ liệu điện tử được sắp xếp, tổ chức để truy cập, khai thác, chia sẻ, quản lý và cập nhật thông qua phương tiện điện tử.",n:"Định nghĩa theo Luật GDĐT 2023"},
+  {s:"20/2023/QH15",v:"Chữ ký điện tử",d:"Chữ ký được tạo lập dưới dạng dữ liệu điện tử gắn liền hoặc kết hợp một cách lô gíc với thông điệp dữ liệu để xác nhận chủ thể ký và khẳng định sự chấp thuận của chủ thể đó đối với thông điệp dữ liệu.",n:""},
+  {s:"20/2023/QH15",v:"Chữ ký số",d:"Chữ ký điện tử sử dụng thuật toán khóa không đối xứng, gồm khóa bí mật và khóa công khai. Chữ ký số bảo đảm tính xác thực, tính toàn vẹn và tính chống chối bỏ nhưng không bảo đảm tính bí mật của thông điệp dữ liệu.",n:""},
+  {s:"20/2023/QH15",v:"Hợp đồng điện tử",d:"Hợp đồng được thiết lập dưới dạng thông điệp dữ liệu.",n:""},
+  {s:"20/2023/QH15",v:"Dấu thời gian",d:"Dữ liệu điện tử gắn với thông điệp dữ liệu cho phép xác định thời gian của thông điệp dữ liệu đó tồn tại ở một thời điểm cụ thể.",n:""},
+  {s:"20/2023/QH15",v:"Người trung gian",d:"Cơ quan, tổ chức, cá nhân đại diện cho cơ quan, tổ chức, cá nhân khác thực hiện việc gửi, nhận hoặc lưu trữ thông điệp dữ liệu hoặc cung cấp dịch vụ khác liên quan đến thông điệp dữ liệu đó.",n:""},
+  {s:"169/2025/NĐ-CP",v:"Sản phẩm, dịch vụ về dữ liệu",d:"Sản phẩm, dịch vụ được tạo thành từ dữ liệu hoặc sử dụng dữ liệu là nguồn tài nguyên chính để phát triển, ứng dụng, giao dịch.",n:""},
+  {s:"169/2025/NĐ-CP",v:"Hoạt động thử nghiệm có kiểm soát",d:"Việc cơ quan nhà nước cho phép tổ chức, cá nhân thử nghiệm có kiểm soát đối với sản phẩm, dịch vụ về dữ liệu mà chưa có quy định của pháp luật hoặc pháp luật quy định chưa đầy đủ.",n:""},
+  {s:"169/2025/NĐ-CP",v:"Rủi ro trong hoạt động thử nghiệm có kiểm soát",d:"Những yếu tố không chắc chắn hoặc bất định có thể gây ra các tác động tiêu cực, làm gián đoạn hoặc ảnh hưởng đến quá trình thực hiện, kết quả đạt được hoặc khả năng ứng dụng của các dự án và sáng kiến.",n:""},
+  {s:"169/2025/NĐ-CP",v:"Hoạt động khoa học, công nghệ, đổi mới sáng tạo về dữ liệu",d:"Hoạt động nghiên cứu cơ bản, nghiên cứu ứng dụng, triển khai thực nghiệm, sản xuất thử nghiệm, ứng dụng công nghệ nhằm phát triển khoa học, công nghệ trong xây dựng, phát triển, bảo vệ, quản trị, xử lý, sử dụng dữ liệu và tạo ra giá trị kinh tế gia tăng.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Mã định danh điện tử của các cơ quan, tổ chức",d:"Chuỗi ký tự để phân biệt, xác định duy nhất các cơ quan, tổ chức khi kết nối, chia sẻ dữ liệu với các hệ thống thông tin, cơ sở dữ liệu của các bộ, ngành, địa phương.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Hệ thống mã định danh điện tử",d:"Tập hợp các mã định danh điện tử và các thông tin liên quan của một nhóm cơ quan, tổ chức cụ thể.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Lược đồ định danh",d:"Bảng dữ liệu mô tả hệ thống mã định danh điện tử của một nhóm các cơ quan, tổ chức cụ thể.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Mã xác định lược đồ định danh",d:"Nhóm ký tự để phân biệt, xác định duy nhất lược đồ định danh của một nhóm cơ quan, tổ chức cụ thể.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Mã xác định cơ quan, tổ chức trong lược đồ định danh",d:"Nhóm ký tự để phân biệt, xác định duy nhất cơ quan, tổ chức đó trong một hệ thống mã định danh điện tử được mô tả bởi lược đồ định danh tương ứng.",n:""},
+  {s:"20/2025/QĐ-TTg",v:"Hệ thống thông tin quản lý Danh mục điện tử dùng chung",d:"Hệ thống thu thập, lưu trữ, quản lý, chia sẻ dữ liệu về các danh mục, bảng mã phân loại, mã định danh điện tử dùng chung do các cơ quan, tổ chức ban hành; phục vụ việc tích hợp, trao đổi, chia sẻ dữ liệu với các bộ, ngành, địa phương.",n:""},
+  {s:"13/2023/NĐ-CP",v:"Sự đồng ý của chủ thể dữ liệu",d:"Việc thể hiện rõ ràng, tự nguyện, khẳng định việc cho phép xử lý dữ liệu cá nhân của chủ thể dữ liệu.",n:"Hết hiệu lực — thay bởi Luật BVDLCN 91/2025/QH15"},
+  {s:"13/2023/NĐ-CP",v:"Chuyển dữ liệu cá nhân ra nước ngoài",d:"Hoạt động sử dụng không gian mạng, thiết bị, phương tiện điện tử hoặc các hình thức khác chuyển dữ liệu cá nhân của công dân Việt Nam tới một địa điểm nằm ngoài lãnh thổ Việt Nam.",n:"Hết hiệu lực — thay bởi Luật BVDLCN 91/2025/QH15"},
+  {s:"13/2023/NĐ-CP",v:"Bên Kiểm soát dữ liệu cá nhân",d:"Tổ chức, cá nhân quyết định mục đích và phương tiện xử lý dữ liệu cá nhân.",n:"Hết hiệu lực — khái niệm cập nhật tại Luật BVDLCN 91/2025/QH15"},
+  {s:"13/2023/NĐ-CP",v:"Bên Xử lý dữ liệu cá nhân",d:"Tổ chức, cá nhân thực hiện việc xử lý dữ liệu thay mặt cho Bên Kiểm soát dữ liệu, thông qua một hợp đồng hoặc thỏa thuận với Bên Kiểm soát dữ liệu.",n:"Hết hiệu lực — khái niệm cập nhật tại Luật BVDLCN 91/2025/QH15"},
 ];
 
-const CATS = {
-  gov:  {label:"Quản trị",        dot:"gov"},
-  mgmt: {label:"Quản lý dữ liệu", dot:"mgmt"},
-  tech: {label:"Kỹ thuật / Hạ tầng", dot:"tech"},
-  risk: {label:"Tuân thủ / Rủi ro",  dot:"risk"},
-};
+const L=[
+  {t:"Luật",so:"60/2024/QH15",co:"Quốc hội",ti:"Luật Dữ liệu",d:"Quy định về xây dựng, quản trị, khai thác, chia sẻ, bảo vệ dữ liệu; phát triển thị trường dữ liệu; quyền và nghĩa vụ của các tổ chức, cá nhân liên quan đến dữ liệu.",url:"https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Luat-Du-lieu-2024-so-60-2024-QH15-621343.aspx",e:"active",y:"2024"},
+  {t:"Luật",so:"91/2025/QH15",co:"Quốc hội",ti:"Luật Bảo vệ Dữ liệu Cá nhân",d:"Quy định về bảo vệ dữ liệu cá nhân, quyền của chủ thể dữ liệu, trách nhiệm của các bên kiểm soát và xử lý dữ liệu cá nhân.",url:"https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Luat-Bao-ve-du-lieu-ca-nhan-2025-so-91-2025-QH15-625628.aspx",e:"active",y:"2025"},
+  {t:"Luật",so:"86/2015/QH13",co:"Quốc hội",ti:"Luật An toàn thông tin mạng",d:"Quy định bảo đảm an toàn thông tin trong xử lý, lưu trữ và truyền dữ liệu; bảo vệ hệ thống thông tin và dữ liệu điện tử.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Luat-an-toan-thong-tin-mang-2015-298365.aspx",e:"active",y:"2015"},
+  {t:"Luật",so:"24/2018/QH14",co:"Quốc hội",ti:"Luật An ninh mạng",d:"Quy định bảo vệ an ninh quốc gia trong không gian mạng; quản lý dữ liệu trên không gian mạng và yêu cầu lưu trữ dữ liệu tại Việt Nam.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Luat-An-ninh-mang-2018-351416.aspx",e:"active",y:"2018"},
+  {t:"Luật",so:"20/2023/QH15",co:"Quốc hội",ti:"Luật Giao dịch điện tử",d:"Quy định giá trị pháp lý của dữ liệu điện tử, dữ liệu số trong giao dịch điện tử và cung cấp dịch vụ số.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Luat-Giao-dich-dien-tu-2023-20-2023-QH15-513347.aspx",e:"active",y:"2023"},
+  {t:"Luật",so:"104/2016/QH13",co:"Quốc hội",ti:"Luật Tiếp cận thông tin",d:"Quy định quyền tiếp cận thông tin của công dân đối với dữ liệu, thông tin do cơ quan nhà nước tạo ra.",url:"https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Luat-tiep-can-thong-tin-2016-280116.aspx",e:"active",y:"2016"},
+  {t:"Nghị định",so:"356/2025/NĐ-CP",co:"Chính phủ",ti:"Quy định chi tiết thi hành Luật Bảo vệ Dữ liệu Cá nhân",d:"Hướng dẫn chi tiết về danh mục dữ liệu cá nhân cơ bản và nhạy cảm, biện pháp bảo vệ, xử lý vi phạm theo Luật BVDLCN 91/2025/QH15.",url:"https://thuvienphapluat.vn/van-ban/Quyen-dan-su/Nghi-dinh-356-2025-ND-CP-huong-dan-Luat-Bao-ve-du-lieu-ca-nhan-687428.aspx",e:"active",y:"2025"},
+  {t:"Nghị định",so:"278/2025/NĐ-CP",co:"Chính phủ",ti:"Nghị định về kết nối, tích hợp và chia sẻ dữ liệu",d:"Quy định chi tiết về việc kết nối, tích hợp và chia sẻ dữ liệu giữa các hệ thống thông tin và cơ sở dữ liệu; khai thác dữ liệu từ Trung tâm dữ liệu quốc gia.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-278-2025-ND-CP-ket-noi-chia-se-du-lieu-bat-buoc-giua-co-quan-he-thong-chinh-tri-678102.aspx",e:"active",y:"2025"},
+  {t:"Nghị định",so:"47/2020/NĐ-CP",co:"Chính phủ",ti:"Nghị định về quản lý, kết nối và chia sẻ dữ liệu số của cơ quan nhà nước",d:"Quy định quản lý dữ liệu số; nguyên tắc chia sẻ dữ liệu giữa các cơ quan nhà nước; cung cấp dữ liệu mở; kết nối qua nền tảng tích hợp chia sẻ dữ liệu quốc gia.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-47-2020-ND-CP-quan-ly-ket-noi-va-chia-se-du-lieu-so-cua-co-quan-nha-nuoc-439384.aspx",e:"active",y:"2020"},
+  {t:"Nghị định",so:"13/2023/NĐ-CP",co:"Chính phủ",ti:"Nghị định về bảo vệ dữ liệu cá nhân (đã hết hiệu lực)",d:"Quy định nguyên tắc xử lý dữ liệu cá nhân; quyền của chủ thể dữ liệu; trách nhiệm của tổ chức xử lý dữ liệu. Đã hết hiệu lực, thay thế bởi Luật BVDLCN 91/2025/QH15.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-13-2023-ND-CP-bao-ve-du-lieu-ca-nhan-465185.aspx",e:"expired",y:"2023"},
+  {t:"Quyết định",so:"2439/QĐ-TTg",co:"Thủ tướng Chính phủ",ti:"Ban hành Khung kiến trúc dữ liệu quốc gia, Khung quản trị dữ liệu quốc gia và Từ điển dữ liệu dùng chung (v1.0)",d:"Thiết lập kiến trúc dữ liệu quốc gia, nguyên tắc quản trị dữ liệu và chuẩn hóa danh mục dữ liệu dùng chung nhằm thúc đẩy kết nối và chia sẻ dữ liệu giữa các cơ quan.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-2439-QD-TTg-2025-Khung-kien-truc-du-lieu-quoc-gia-Khung-quan-tri-du-lieu-quoc-gia-680001.aspx",e:"active",y:"2025"},
+  {t:"Quyết định",so:"749/QĐ-TTg",co:"Thủ tướng Chính phủ",ti:"Chương trình chuyển đổi số quốc gia đến năm 2025, định hướng đến năm 2030",d:"Định hướng phát triển Chính phủ số, kinh tế số, xã hội số; xây dựng nền tảng dữ liệu quốc gia và thúc đẩy chia sẻ dữ liệu.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-749-QD-TTg-2020-phe-duyet-Chuong-trinh-Chuyen-doi-so-quoc-gia-444136.aspx",e:"active",y:"2020"},
+  {t:"Quyết định",so:"942/QĐ-TTg",co:"Thủ tướng Chính phủ",ti:"Chiến lược phát triển Chính phủ điện tử hướng tới Chính phủ số",d:"Định hướng xây dựng nền tảng dữ liệu quốc gia, phát triển các cơ sở dữ liệu quốc gia và thúc đẩy kết nối chia sẻ dữ liệu.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-942-QD-TTg-2021-Chien-luoc-phat-trien-Chinh-phu-dien-tu-huong-toi-Chinh-phu-so-477851.aspx",e:"active",y:"2021"},
+  {t:"Quyết định",so:"11/2026/QĐ-TTg",co:"Thủ tướng Chính phủ",ti:"Ban hành Danh mục cơ sở dữ liệu quốc gia",d:"Quy định danh mục chính thức các cơ sở dữ liệu quốc gia được xây dựng và quản lý tập trung.",url:"",e:"active",y:"2026"},
+  {t:"Quyết định",so:"292/QĐ-BKHCN",co:"Bộ Khoa học và Công nghệ",ti:"Ban hành Khung kiến trúc Chính phủ số Việt Nam, Phiên bản 4.0",d:"Cập nhật khung kiến trúc tổng thể cho Chính phủ số Việt Nam phiên bản 4.0.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-292-QD-BKHCN-2025-Khung-kien-truc-Chinh-phu-so-Viet-Nam-phien-ban-4-0-651388.aspx",e:"active",y:"2025"},
+  {t:"Nghị quyết",so:"214/NQ-CP",co:"Chính phủ",ti:"Kế hoạch hành động thúc đẩy tạo lập dữ liệu phục vụ chuyển đổi số toàn diện",d:"Kế hoạch hành động cụ thể thúc đẩy việc tạo lập, khai thác dữ liệu phục vụ mục tiêu chuyển đổi số toàn diện quốc gia.",url:"https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-quyet-214-NQ-CP-2025-thuc-day-tao-lap-du-lieu-phuc-vu-chuyen-doi-so-toan-dien-666461.aspx",e:"active",y:"2025"},
+];
 
-let currentCat = 'all';
-let currentQ   = '';
+const SRC_ORDER=["91/2025/QH15","60/2024/QH15","278/2025/NĐ-CP","356/2025/NĐ-CP","169/2025/NĐ-CP","47/2020/NĐ-CP","20/2023/QH15","20/2025/QĐ-TTg","13/2023/NĐ-CP"];
+const SRC_META={"91/2025/QH15":{label:"Luật BVDLCN 91/2025/QH15",dot:"vb"},"60/2024/QH15":{label:"Luật Dữ liệu 60/2024/QH15",dot:"vb"},"278/2025/NĐ-CP":{label:"NĐ 278/2025 — Kết nối, chia sẻ dữ liệu",dot:"nb"},"356/2025/NĐ-CP":{label:"NĐ 356/2025 — Chi tiết Luật BVDLCN",dot:"nb"},"169/2025/NĐ-CP":{label:"NĐ 169/2025 — Thị trường dữ liệu",dot:"nb"},"47/2020/NĐ-CP":{label:"NĐ 47/2020 — QLKN&CS dữ liệu số",dot:"nb"},"20/2023/QH15":{label:"Luật Giao dịch điện tử 20/2023/QH15",dot:"vb"},"20/2025/QĐ-TTg":{label:"QĐ 20/2025 — Mã định danh điện tử",dot:"qd"},"13/2023/NĐ-CP":{label:"NĐ 13/2023 — BVDLCN (đã hết hiệu lực)",dot:"cd"}};
+const LAW_GROUPS=[{k:"Luật",lbl:"Luật",dot:"sec-luat"},{k:"Nghị định",lbl:"Nghị định",dot:"sec-ndcp"},{k:"Quyết định",lbl:"Quyết định",dot:"sec-qd"},{k:"Nghị quyết",lbl:"Nghị quyết",dot:"sec-nq"}];
 
-function esc(s) {
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
+let tab='terms',src='all',lt='all',q='';
 
-function highlight(text, q) {
-  if (!q) return esc(text);
-  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return esc(text).replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
-}
+function e(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function hl(text,qq){if(!qq)return e(text);return e(text).replace(new RegExp('('+qq.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>')}
+function lawCls(t){return t==='Luật'?'lt-luat':t==='Nghị định'?'lt-ndcp':t==='Quyết định'?'lt-qd':t==='Nghị quyết'?'lt-nq':'lt-other'}
+function effTag(x){return x==='active'?'<span class="eff-tag active">● Còn hiệu lực</span>':x==='expired'?'<span class="eff-tag expired">✕ Hết hiệu lực</span>':'<span class="eff-tag unknown">Chưa rõ</span>'}
 
-function renderCard(term, q) {
-  const hasAbbr = term.abbr;
-  const hasLaw  = term.law;
-  const hasSyn  = term.syn;
-  return `
-    <div class="card" id="${term.id}" onclick="toggleCard(this)">
-      <div class="card-top">
-        <span class="card-code">${esc(term.id)}</span>
-        <div class="card-names">
-          <div class="card-en">${highlight(term.en, q)}</div>
-          <div class="card-vi">${highlight(term.vi, q)}</div>
-        </div>
-        ${hasAbbr ? `<span class="card-abbr">${esc(term.abbr)}</span>` : ''}
-        <svg class="card-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="card-body-inner">
-          <p class="desc-text">${highlight(term.desc, q)}</p>
-          <div class="meta-rows">
-            ${hasLaw ? `<div class="meta-row"><span class="meta-label">Pháp luật</span><span class="meta-val law-tag">${esc(term.law)}</span></div>` : ''}
-            ${hasSyn ? `<div class="meta-row"><span class="meta-label">Đồng nghĩa</span><span class="meta-val syn-tag">${esc(term.syn)}</span></div>` : ''}
-            ${hasAbbr ? `<div class="meta-row"><span class="meta-label">Viết tắt</span><span class="meta-val" style="font-family:'DM Mono',monospace;color:var(--gold)">${esc(term.abbr)}</span></div>` : ''}
-          </div>
-        </div>
-      </div>
-    </div>`;
-}
-
-function toggleCard(el) {
-  el.classList.toggle('expanded');
-}
-
-function render() {
-  const q = currentQ.toLowerCase().trim();
-  const filtered = TERMS.filter(t => {
-    const catMatch = currentCat === 'all' || t.cat === currentCat;
-    const text = [t.id,t.en,t.vi,t.desc,t.abbr,t.law,t.syn].join(' ').toLowerCase();
-    const qMatch = !q || text.includes(q);
-    return catMatch && qMatch;
+function renderTerms(){
+  const qq=q.toLowerCase().trim();
+  const f=T.filter(t=>{const sm=src==='all'||t.s===src;const tx=(t.v+t.d+t.s+t.n).toLowerCase();return sm&&(!qq||tx.includes(qq))});
+  document.getElementById('tc-t').textContent=f.length;
+  document.getElementById('cnt').textContent=f.length+' thuật ngữ';
+  const cont=document.getElementById('tc'),em=document.getElementById('et');
+  if(!f.length){cont.innerHTML='';em.classList.add('show');return}em.classList.remove('show');
+  const grp={};SRC_ORDER.forEach(s=>{grp[s]=[]});f.forEach(t=>{if(!grp[t.s])grp[t.s]=[];grp[t.s].push(t)});
+  let html='';
+  SRC_ORDER.forEach(s=>{
+    const items=grp[s];if(!items||!items.length)return;
+    const m=SRC_META[s]||{label:s,dot:'nb'};
+    const exp=s==='13/2023/NĐ-CP';
+    html+=`<div class="group-block"><div class="group-header"><span class="gdot ${m.dot}"></span><span class="gtitle">${e(m.label)}</span>${exp?'<span class="expired-badge">Hết hiệu lực</span>':''}<span class="gcnt">${items.length}</span></div><div class="cards-grid">${items.map(t=>`<div class="card" onclick="this.classList.toggle('expanded')"><div class="card-top"><span class="card-src">${e(t.s)}</span><div class="card-names"><div class="card-vn"${exp?' style="opacity:.65"':''}>${hl(t.v,qq)}</div></div><svg class="card-xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="card-body"><div class="card-body-inner"><p class="desc">${hl(t.d,qq)}</p><div class="mrows"><div class="mrow"><span class="mlbl">Nguồn</span><span class="mval src-law">${e(t.s)}</span></div>${t.n?`<div class="mrow"><span class="mlbl">Ghi chú</span><span class="mval src-note">${e(t.n)}</span></div>`:''}</div></div></div></div>`).join('')}</div></div>`;
   });
-
-  document.getElementById('count-label').textContent = filtered.length + ' thuật ngữ';
-
-  const main = document.getElementById('main-content');
-  const empty = document.getElementById('empty-state');
-
-  if (filtered.length === 0) {
-    main.innerHTML = '';
-    empty.classList.add('show');
-    return;
-  }
-  empty.classList.remove('show');
-
-  // Group by cat preserving order
-  const groups = {};
-  filtered.forEach(t => {
-    if (!groups[t.cat]) groups[t.cat] = [];
-    groups[t.cat].push(t);
-  });
-
-  const catOrder = ['gov','mgmt','tech','risk'];
-  let html = '';
-  catOrder.forEach(cat => {
-    if (!groups[cat]) return;
-    const info = CATS[cat];
-    const items = groups[cat];
-    html += `<div class="group-block">
-      <div class="group-header">
-        <span class="group-dot ${info.dot}"></span>
-        <span class="group-title">${esc(info.label)}</span>
-        <span class="group-count">${items.length}</span>
-      </div>
-      <div class="cards-grid">
-        ${items.map(t => renderCard(t, q)).join('')}
-      </div>
-    </div>`;
-  });
-  main.innerHTML = html;
+  cont.innerHTML=html;
 }
 
-// Search
-let searchTimer;
-document.getElementById('search').addEventListener('input', e => {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    currentQ = e.target.value;
-    render();
-  }, 160);
-});
-
-// Filters
-document.querySelectorAll('.pill').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentCat = btn.dataset.cat;
-    render();
+function renderLaws(){
+  const qq=q.toLowerCase().trim();
+  const f=L.filter(l=>{const lm=lt==='all'||l.t===lt;const tx=(l.so+l.ti+l.d+l.co+l.t).toLowerCase();return lm&&(!qq||tx.includes(qq))});
+  document.getElementById('tc-l').textContent=f.length;
+  document.getElementById('cnt').textContent=f.length+' văn bản';
+  const cont=document.getElementById('lc'),em=document.getElementById('el');
+  if(!f.length){cont.innerHTML='';em.classList.add('show');return}em.classList.remove('show');
+  const grp={};f.forEach(l=>{if(!grp[l.t])grp[l.t]=[];grp[l.t].push(l)});
+  let html='';
+  LAW_GROUPS.forEach(g=>{
+    const items=grp[g.k];if(!items||!items.length)return;
+    html+=`<div class="group-block"><div class="sec-hdr"><span class="sec-dot ${g.dot}"></span><span class="sec-title">${e(g.lbl)}</span><span class="sec-cnt">${items.length}</span></div><div class="law-grid">${items.map(l=>`<div class="law-card" onclick="this.classList.toggle('expanded')"><div class="law-card-top"><span class="law-type-badge ${lawCls(l.t)}">${e(l.t)}</span><div class="law-info"><div class="law-so">${e(l.so||'Chưa có số')} ${effTag(l.e)}</div><div class="law-title">${hl(l.ti,qq)}</div><div class="law-organ">${e(l.co)} · ${e(l.y)}</div></div><svg class="law-xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="law-body"><div class="law-body-inner">${l.d?`<p class="law-desc">${hl(l.d,qq)}</p>`:''}<div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center">${l.url?`<a class="law-link" href="${e(l.url)}" target="_blank" rel="noopener">Xem văn bản <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`:''}</div></div></div></div>`).join('')}</div></div>`;
   });
-});
+  cont.innerHTML=html;
+}
 
-// Scroll-to-top
-const topBtn = document.getElementById('top-btn');
-window.addEventListener('scroll', () => {
-  topBtn.classList.toggle('show', window.scrollY > 400);
-}, {passive: true});
+function render(){if(tab==='terms')renderTerms();else renderLaws()}
 
-// Init
-render();
+function switchTab(newTab,btn){
+  tab=newTab;q='';document.getElementById('search').value='';
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+newTab).classList.add('active');
+  document.getElementById('pt').style.display=newTab==='terms'?'flex':'none';
+  document.getElementById('pl').style.display=newTab==='laws'?'flex':'none';
+  if(newTab==='terms'){src='all';document.querySelectorAll('#pt .pill').forEach(p=>p.classList.remove('active'));document.querySelector('#pt .pill[data-src="all"]').classList.add('active')}
+  else{lt='all';document.querySelectorAll('#pl .pill').forEach(p=>p.classList.remove('active'));document.querySelector('#pl .pill[data-lt="all"]').classList.add('active')}
+  render();
+}
+
+document.querySelectorAll('#pt .pill').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('#pt .pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');src=btn.dataset.src;renderTerms();
+}));
+document.querySelectorAll('#pl .pill').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('#pl .pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');lt=btn.dataset.lt;renderLaws();
+}));
+
+let st;document.getElementById('search').addEventListener('input',ev=>{clearTimeout(st);st=setTimeout(()=>{q=ev.target.value;render()},160)});
+window.addEventListener('scroll',()=>document.getElementById('top-btn').classList.toggle('show',scrollY>400),{passive:true});
+
+document.getElementById('stat-t').textContent=T.length+' thuật ngữ';
+document.getElementById('stat-l').textContent=L.length+' văn bản pháp luật';
+document.getElementById('tc-t').textContent=T.length;
+document.getElementById('tc-l').textContent=L.length;
+document.getElementById('cnt').textContent=T.length+' thuật ngữ';
+renderTerms();
 </script>
 </body>
 </html>
