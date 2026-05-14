@@ -1,362 +1,391 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DGNA - Nền tảng tư vấn và triển khai Data Governance hàng đầu Việt Nam. Khóa học, tư vấn chiến lược và hỗ trợ triển khai khung quản trị dữ liệu cho doanh nghiệp.">
+  <meta name="description"
+    content="DGNA - Nền tảng tư vấn và triển khai Data Governance hàng đầu Việt Nam. Khóa học, tư vấn chiến lược và hỗ trợ triển khai khung quản trị dữ liệu cho doanh nghiệp.">
   <meta name="keywords" content="Data Governance, Quản trị dữ liệu, Khung dữ liệu, Tư vấn dữ liệu, Khóa học Data">
   <title>DGNA | Giải Pháp Quản Trị Dữ Liệu Doanh Nghiệp</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
+
 <body>
 
-<!-- Background Effects -->
-<div class="bg-grid"></div>
-<div class="bg-orbs"><div class="bg-orb"></div><div class="bg-orb"></div><div class="bg-orb"></div></div>
-<canvas id="particles-canvas"></canvas>
-
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-  <div class="container">
-    <a href="#" class="nav-logo">
-      <div class="logo-icon">📊</div>
-      <span>DGNA</span>
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#services">Dịch Vụ</a>
-      <a href="#process">Quy Trình</a>
-      <a href="#courses">Khóa Học</a>
-      <a href="#why-us">Tại Sao Chọn Chúng Tôi</a>
-      <a href="#contact">Liên Hệ</a>
-    </div>
-    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Tư Vấn Miễn Phí</button>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- Background Effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
   </div>
-</nav>
+  <canvas id="particles-canvas"></canvas>
 
-<!-- Hero -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span> Đối tác tin cậy về Data Governance</div>
-      <h1>DGNA - Giải Pháp Quản Trị Dữ Liệu Doanh Nghiệp</h1>
-      <p class="hero-desc">Chúng tôi cung cấp giải pháp quản trị dữ liệu toàn diện cho doanh nghiệp — tư vấn chiến lược, đào tạo chuyên sâu và triển khai thực tiễn với công nghệ thông minh.</p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-          Bắt Đầu Ngay <span>→</span>
-        </button>
-        <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-          Tìm Hiểu Thêm
-        </button>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="Logo/Logo-2.png" alt="DGNA Logo" style="height: 40px; width: auto;">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Dịch Vụ</a>
+        <a href="#process">Quy Trình</a>
+        <a href="#courses">Khóa Học</a>
+        <a href="#why-us">Tại Sao Chọn Chúng Tôi</a>
+        <a href="#contact">Liên Hệ</a>
       </div>
-      <div class="hero-stats">
-        <!-- <div class="stat-item"><h3 id="counter1">0+</h3><p>Doanh nghiệp tin tưởng</p></div>
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Tư Vấn
+        Miễn Phí</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> Đối tác tin cậy về Data Governance</div>
+        <h1 class="section-title">Giải Pháp <span class="highlight">Quản Trị Dữ Liệu</span> Cho Doanh Nghiệp</h1>
+        <p class="hero-desc">Chúng tôi cung cấp giải pháp quản trị dữ liệu toàn diện cho doanh nghiệp — tư vấn chiến
+          lược, đào tạo chuyên sâu và triển khai thực tiễn với công nghệ thông minh.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Bắt Đầu Ngay <span>→</span>
+          </button>
+          <button class="btn-secondary"
+            onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+            Tìm Hiểu Thêm
+          </button>
+        </div>
+        <div class="hero-stats">
+          <!-- <div class="stat-item"><h3 id="counter1">0+</h3><p>Doanh nghiệp tin tưởng</p></div>
         <div class="stat-item"><h3 id="counter2">0+</h3><p>Dự án hoàn thành</p></div>
         <div class="stat-item"><h3 id="counter3">0%</h3><p>Khách hàng hài lòng</p></div> -->
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="data-sphere">
+          <div class="sphere-ring"></div>
+          <div class="sphere-ring"></div>
+          <div class="sphere-ring"></div>
+          <div class="sphere-core">🛡️</div>
+          <div class="floating-card">
+            <div class="fc-icon">📈</div>
+            <div>Data Quality <span class="fc-value">99.2%</span></div>
+          </div>
+          <div class="floating-card">
+            <div class="fc-icon">🔒</div>
+            <div>Compliance <span class="fc-value">Active</span></div>
+          </div>
+          <div class="floating-card">
+            <div class="fc-icon">⚡</div>
+            <div>Pipeline <span class="fc-value">Running</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="data-sphere">
-        <div class="sphere-ring"></div>
-        <div class="sphere-ring"></div>
-        <div class="sphere-ring"></div>
-        <div class="sphere-core">🛡️</div>
-        <div class="floating-card"><div class="fc-icon">📈</div><div>Data Quality <span class="fc-value">99.2%</span></div></div>
-        <div class="floating-card"><div class="fc-icon">🔒</div><div>Compliance <span class="fc-value">Active</span></div></div>
-        <div class="floating-card"><div class="fc-icon">⚡</div><div>Pipeline <span class="fc-value">Running</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Services -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">💼 Dịch Vụ</div>
-      <h2 class="section-title">Giải Pháp <span class="highlight">Toàn Diện</span> Cho Dữ Liệu</h2>
-      <p class="section-desc mx-auto">Ba trụ cột dịch vụ giúp doanh nghiệp xây dựng và vận hành khung quản trị dữ liệu hiệu quả.</p>
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label">💼 Dịch Vụ</div>
+        <h2 class="section-title">Giải Pháp <span class="highlight">Toàn Diện</span> Cho Dữ Liệu</h2>
+        <p class="section-desc mx-auto">Ba trụ cột dịch vụ giúp doanh nghiệp xây dựng và vận hành khung quản trị dữ liệu
+          hiệu quả.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <div style="width: 32px; height: 32px; overflow: hidden;">
+              <img src="Icon/15.png" alt="icon"
+                style="width: 32px; height: 32px; transform: translateX(-32px); filter: drop-shadow(32px 0 0 #fbbf24);">
+            </div>
+          </div>
+          <h3>Tư Vấn Chiến Lược</h3>
+          <p>Đánh giá hiện trạng dữ liệu, xây dựng mô hình mục tiêu và kiến trúc dữ liệu phù hợp với quy mô doanh
+            nghiệp.</p>
+          <ul class="service-features">
+            <li><span class="check">✓</span> Đánh giá mức độ trưởng thành dữ liệu</li>
+            <li><span class="check">✓</span> Xây dựng Khung kiến trúc dữ liệu</li>
+            <li><span class="check">✓</span> Xây dựng Khung quản trị, quản lý dữ liệu</li>
+            <li><span class="check">✓</span> Xây dựng Từ điển dữ liệu</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <div style="width: 32px; height: 32px; overflow: hidden;">
+              <img src="Icon/14.png" alt="icon"
+                style="width: 32px; height: 32px; transform: translateX(-32px); filter: drop-shadow(32px 0 0 #fbbf24);">
+            </div>
+          </div>
+          <h3>Khóa Học Chuyên Sâu</h3>
+          <p>Chương trình đào tạo từ cơ bản đến nâng cao về data governance, data quality & data management.</p>
+          <ul class="service-features">
+            <li><span class="check">✓</span> Online & Offline linh hoạt</li>
+            <li><span class="check">✓</span> Giảng viên chuyên gia thực chiến</li>
+            <li><span class="check">✓</span> Chuẩn quốc tế</li>
+            <li><span class="check">✓</span> Hỗ trợ mentoring 1-1</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <div style="width: 32px; height: 32px; overflow: hidden;">
+              <img src="Icon/13.png" alt="icon"
+                style="width: 32px; height: 32px; transform: translateX(-32px); filter: drop-shadow(32px 0 0 #fbbf24);">
+            </div>
+          </div>
+          <h3>Triển Khai & Hỗ Trợ</h3>
+          <p>Đồng hành cùng doanh nghiệp trong suốt quá trình triển khai, vận hành và tối ưu hệ thống.</p>
+          <ul class="service-features">
+            <li><span class="check">✓</span> Cài đặt & cấu hình hệ thống</li>
+            <li><span class="check">✓</span> Tích hợp hạ tầng hiện có</li>
+            <li><span class="check">✓</span> Đào tạo đội ngũ vận hành</li>
+            <li><span class="check">✓</span> Hỗ trợ kỹ thuật 24/7</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">🎯</div>
-        <h3>Tư Vấn Chiến Lược</h3>
-        <p>Đánh giá hiện trạng dữ liệu, xây dựng mô hình mục tiêu và kiến trúc dữ liệu phù hợp với quy mô doanh nghiệp.</p>
-        <ul class="service-features">
-          <li><span class="check">✓</span> Đánh giá mức độ trưởng thành dữ liệu</li>
-          <li><span class="check">✓</span> Xây dựng Khung kiến trúc dữ liệu</li>
-          <li><span class="check">✓</span> Xây dựng Khung quản trị, quản lý dữ liệu</li>
-          <li><span class="check">✓</span> Xây dựng Từ điển dữ liệu</li>
-        </ul>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">📚</div>
-        <h3>Khóa Học Chuyên Sâu</h3>
-        <p>Chương trình đào tạo từ cơ bản đến nâng cao về data governance, data quality & data management.</p>
-        <ul class="service-features">
-          <li><span class="check">✓</span> Online & Offline linh hoạt</li>
-          <li><span class="check">✓</span> Giảng viên chuyên gia thực chiến</li>
-          <li><span class="check">✓</span> Chuẩn quốc tế</li>
-          <li><span class="check">✓</span> Hỗ trợ mentoring 1-1</li>
-        </ul>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🚀</div>
-        <h3>Triển Khai & Hỗ Trợ</h3>
-        <p>Đồng hành cùng doanh nghiệp trong suốt quá trình triển khai, vận hành và tối ưu hệ thống.</p>
-        <ul class="service-features">
-          <li><span class="check">✓</span> Cài đặt & cấu hình hệ thống</li>
-          <li><span class="check">✓</span> Tích hợp hạ tầng hiện có</li>
-          <li><span class="check">✓</span> Đào tạo đội ngũ vận hành</li>
-          <li><span class="check">✓</span> Hỗ trợ kỹ thuật 24/7</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Process -->
-<section class="section" id="process">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">⚙️ Quy Trình</div>
-      <h2 class="section-title">Quy Trình <span class="highlight">Triển Khai</span> Chuyên Nghiệp</h2>
-      <p class="section-desc mx-auto">Phương pháp luận 4 bước được chứng minh hiệu quả qua nhiều dự án.</p>
+  <!-- Process -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label">⚙️ Quy Trình</div>
+        <h2 class="section-title">Quy Trình <span class="highlight">Triển Khai</span> Chuyên Nghiệp</h2>
+        <p class="section-desc mx-auto">Phương pháp luận 4 bước được chứng minh hiệu quả qua nhiều dự án.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-step reveal">
+          <div class="step-icon">🔍</div>
+          <div class="step-number">01</div>
+          <h3>Khảo Sát & Đánh Giá</h3>
+          <p>Phân tích hiện trạng dữ liệu, quy trình và hạ tầng công nghệ của doanh nghiệp.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-icon">📐</div>
+          <div class="step-number">02</div>
+          <h3>Thiết Kế Giải Pháp</h3>
+          <p>Xây dựng kiến trúc, chính sách và quy trình quản trị dữ liệu phù hợp.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-icon">⚡</div>
+          <div class="step-number">03</div>
+          <h3>Triển Khai & Đào Tạo</h3>
+          <p>Cài đặt hệ thống, cấu hình và đào tạo đội ngũ vận hành.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-icon">📊</div>
+          <div class="step-number">04</div>
+          <h3>Vận Hành & Tối Ưu</h3>
+          <p>Giám sát, đo lường hiệu quả và liên tục cải tiến hệ thống.</p>
+        </div>
+      </div>
     </div>
-    <div class="process-timeline">
-      <div class="process-step reveal">
-        <div class="step-icon">🔍</div>
-        <div class="step-number">01</div>
-        <h3>Khảo Sát & Đánh Giá</h3>
-        <p>Phân tích hiện trạng dữ liệu, quy trình và hạ tầng công nghệ của doanh nghiệp.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-icon">📐</div>
-        <div class="step-number">02</div>
-        <h3>Thiết Kế Giải Pháp</h3>
-        <p>Xây dựng kiến trúc, chính sách và quy trình quản trị dữ liệu phù hợp.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-icon">⚡</div>
-        <div class="step-number">03</div>
-        <h3>Triển Khai & Đào Tạo</h3>
-        <p>Cài đặt hệ thống, cấu hình và đào tạo đội ngũ vận hành.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-icon">📊</div>
-        <div class="step-number">04</div>
-        <h3>Vận Hành & Tối Ưu</h3>
-        <p>Giám sát, đo lường hiệu quả và liên tục cải tiến hệ thống.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Courses -->
-<section class="section" id="courses">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">🎓 Khóa Học</div>
-      <h2 class="section-title">Khóa Học <span class="highlight">Data Governance</span></h2>
-      <p class="section-desc mx-auto">Chương trình đào tạo bài bản, từ nền tảng đến chuyên sâu, giúp bạn làm chủ quản trị dữ liệu.</p>
-    </div>
-    
-    <div class="courses-grid">
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #fbbf24); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📘</div>
-            <div style="font-size:1.1rem; font-weight:700;">Awareness</div>
-          </div>
-          <span class="course-badge beginner">Cơ Bản</span>
-        </div>
-        <div class="course-body">
-          <h3>Awareness (Nhận thức)</h3>
-          <p>1. Data Governance là gì & Tại sao quan trọng?
-          <br>2. Cấu trúc tổ chức Data Governance
-          <br>3. Chính sách & Quy trình Dữ liệu cơ bản
-          <br>4. Kế hoạch triển khai DG tại tổ chức
-          </p>
-          <div class="course-meta">
-            <span>📅 2 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
-          </div>
-        </div>
+  <!-- Courses -->
+  <section class="section" id="courses">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label">🎓 Khóa Học</div>
+        <h2 class="section-title">Khóa Học <span class="highlight">Data Governance</span></h2>
+        <p class="section-desc mx-auto">Chương trình đào tạo bài bản, từ nền tảng đến chuyên sâu, giúp bạn làm chủ quản
+          trị dữ liệu.</p>
       </div>
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #f59e0b); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📗</div>
-            <div style="font-size:1.1rem; font-weight:700;">Practitioner</div>
-          </div>
-          <span class="course-badge advanced">Nâng Cao</span>
-        </div>
-        <div class="course-body">
-          <h3>Practitioner (Thực hành)</h3>
-          <p>1. Quản lý Chất lượng Dữ liệu (DQM)
-          <br>2. Data Catalog & Business Glossary
-          <br>3. Phân loại & Bảo mật Dữ liệu
-          <br>4. Quy trình Issue Management & Escalation
-          <br>5. Sử dụng công cụ DG (hands-on)
-          </p>
-          <div class="course-meta">
-            <span>📅 3 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
-          </div>
-        </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #d97706); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📕</div>
-            <div style="font-size:1.1rem; font-weight:700;">Champion</div>
-          </div>
-          <span class="course-badge expert">Chuyên Gia</span>
-        </div>
-        <div class="course-body">
-          <h3>Champion (Chuyên gia)</h3>
-          <p>1. Xây dựng DG Maturity Model & Roadmap
-          <br>2. Change Management & Văn hóa Dữ liệu
-          <br>3. Đo lường ROI & Business Value của DG
-          </p>
-          <div class="course-meta">
-            <span>📅 5 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="courses-grid">
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #fbbf24); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📘</div>
-            <div style="font-size:1.1rem; font-weight:700;">Associate</div>
+      <div class="courses-grid">
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/1.jpg" alt="Awareness">
+            <span class="course-badge beginner">Cơ Bản</span>
           </div>
-          <span class="course-badge beginner">Cơ Bản</span>
-        </div>
-        <div class="course-body">
-          <h3>Associate — Tư vấn viên DG</h3>
-          <p>1. Nền tảng Data Governance chuyên sâu
-          <br>2. Công nghệ & Công cụ DG
-          <br>3. Phương thức Triển khai DG
-          <br>4. Kỹ năng Thu thập Yêu cầu & Phân tích
-          <br>5. Thực tập dự án nội bộ (Shadowing)
-          </p>
-          <div class="course-meta">
-            <span>📅 2 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
+          <div class="course-body">
+            <h3>Awareness (Nhận thức)</h3>
+            <p>1. Data Governance là gì & Tại sao quan trọng?
+              <br>2. Cấu trúc tổ chức Data Governance
+              <br>3. Chính sách & Quy trình Dữ liệu cơ bản
+              <br>4. Kế hoạch triển khai DG tại tổ chức
+            </p>
+            <div class="course-meta">
+              <span>📅 2 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #f59e0b); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📗</div>
-            <div style="font-size:1.1rem; font-weight:700;">Consultant</div>
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/2.jpg" alt="Practitioner">
+            <span class="course-badge advanced">Nâng Cao</span>
           </div>
-          <span class="course-badge advanced">Nâng Cao</span>
-        </div>
-        <div class="course-body">
-          <h3>Consultant — Chuyên gia DG</h3>
-          <p>1. Thiết kế Operating Model DG
-          <br>2. Data Architecture & Lineage
-          <br>3. Quản trị Rủi ro & Tuân thủ Dữ liệu
-          <br>4. Xây dựng Training Materials
-          <br>5. DG theo từng Ngành dọc
-          </p>
-          <div class="course-meta">
-            <span>📅 3 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
+          <div class="course-body">
+            <h3>Practitioner (Thực hành)</h3>
+            <p>1. Quản lý Chất lượng Dữ liệu (DQM)
+              <br>2. Data Catalog & Business Glossary
+              <br>3. Phân loại & Bảo mật Dữ liệu
+              <br>4. Quy trình Issue Management & Escalation
+              <br>5. Sử dụng công cụ DG (hands-on)
+            </p>
+            <div class="course-meta">
+              <span>📅 3 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="course-img" style="background: linear-gradient(135deg, #0b1120, #d97706); display:flex; align-items:center; justify-content:center;">
-          <div style="text-align:center; color:#fff; padding:20px;">
-            <div style="font-size:3rem; margin-bottom:8px;">📕</div>
-            <div style="font-size:1.1rem; font-weight:700;">Senior</div>
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/3.jpg" alt="Champion">
+            <span class="course-badge expert">Chuyên Gia</span>
           </div>
-          <span class="course-badge expert">Chuyên Gia</span>
-        </div>
-        <div class="course-body">
-          <h3>Senior — Kiến trúc sư DG</h3>
-          <p>1. Enterprise DG Strategy & Transformation
-          <br>2. AI/ML Governance & Modern Data Stack
-          <br>3. Tư vấn Chiến lược & Phát triển Đề xuất
-          </p>
-          <div class="course-meta">
-            <span>📅 5 tuần</span>
-            <span>👥 Online/Offline</span>
-            <span class="course-price">Liên hệ</span>
+          <div class="course-body">
+            <h3>Champion (Chuyên gia)</h3>
+            <p>1. Xây dựng DG Maturity Model & Roadmap
+              <br>2. Change Management & Văn hóa Dữ liệu
+              <br>3. Đo lường ROI & Business Value của DG
+            </p>
+            <div class="course-meta">
+              <span>📅 5 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="courses-grid">
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/4.jpg" alt="Associate">
+            <span class="course-badge beginner">Cơ Bản</span>
+          </div>
+          <div class="course-body">
+            <h3>Associate — Tư vấn viên DG</h3>
+            <p>1. Nền tảng Data Governance chuyên sâu
+              <br>2. Công nghệ & Công cụ DG
+              <br>3. Phương thức Triển khai DG
+              <br>4. Kỹ năng Thu thập Yêu cầu & Phân tích
+              <br>5. Thực tập dự án nội bộ (Shadowing)
+            </p>
+            <div class="course-meta">
+              <span>📅 2 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
+          </div>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/5.jpg" alt="Consultant">
+            <span class="course-badge advanced">Nâng Cao</span>
+          </div>
+          <div class="course-body">
+            <h3>Consultant — Chuyên gia DG</h3>
+            <p>1. Thiết kế Operating Model DG
+              <br>2. Data Architecture & Lineage
+              <br>3. Quản trị Rủi ro & Tuân thủ Dữ liệu
+              <br>4. Xây dựng Training Materials
+              <br>5. DG theo từng Ngành dọc
+            </p>
+            <div class="course-meta">
+              <span>📅 3 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
+          </div>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-img">
+            <img src="Image/6.jpg" alt="Senior">
+            <span class="course-badge expert">Chuyên Gia</span>
+          </div>
+          <div class="course-body">
+            <h3>Senior — Kiến trúc sư DG</h3>
+            <p>1. Enterprise DG Strategy & Transformation
+              <br>2. AI/ML Governance & Modern Data Stack
+              <br>3. Tư vấn Chiến lược & Phát triển Đề xuất
+            </p>
+            <div class="course-meta">
+              <span>📅 5 tuần</span>
+              <span>👥 Online/Offline</span>
+              <span class="course-price">Liên hệ</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<!-- Why Us -->
-<section class="section" id="why-us">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">🏆 Lợi Thế</div>
-      <h2 class="section-title">Tại Sao Chọn <span class="highlight">DGNA</span>?</h2>
-      <p class="section-desc mx-auto">Chúng tôi mang đến giá trị thực sự cho doanh nghiệp với đội ngũ chuyên gia hàng đầu.</p>
     </div>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-icon">👨‍💼</div>
-        <div>
-          <h3>Đội Ngũ Chuyên Gia</h3>
-          <p>Kinh nghiệm 10+ năm trong lĩnh vực Quản trị dữ liệu với hiểu biết sâu về chính sách và luật dữ liệu tại Việt Nam.</p>
-        </div>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">🏗️</div>
-        <div>
-          <h3>Phương Pháp Chuẩn Quốc Tế</h3>
-          <p>Áp dụng framework DAMA-DMBOK, ISO 8000 và các tiêu chuẩn quản trị dữ liệu toàn cầu.</p>
-        </div>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">🤝</div>
-        <div>
-          <h3>Đồng Hành Dài Hạn</h3>
-          <p>Không chỉ tư vấn, chúng tôi đồng hành cùng doanh nghiệp từ giai đoạn thiết kế đến vận hành ổn định.</p>
-        </div>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">💡</div>
-        <div>
-          <h3>Giải Pháp Tùy Biến</h3>
-          <p>Mỗi doanh nghiệp là duy nhất — giải pháp được thiết kế riêng phù hợp quy mô và ngành nghề.</p>
-        </div>
-      </div>
-    </div>
+  </section>
 
-    <!-- Stats -->
-    <!-- <div class="stats-bar reveal">
+  <!-- Why Us -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label">🏆 Lợi Thế</div>
+        <h2 class="section-title">Tại Sao Chọn <span class="highlight">DGNA</span>?</h2>
+        <p class="section-desc mx-auto">Chúng tôi mang đến giá trị thực sự cho doanh nghiệp với đội ngũ chuyên gia hàng
+          đầu.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <img src="Icon/9.png" alt="icon" style="width: 32px; height: 32px;">
+          </div>
+          <div>
+            <h3>Đội Ngũ Chuyên Gia</h3>
+            <p>Kinh nghiệm 10+ năm trong lĩnh vực Quản trị dữ liệu với hiểu biết sâu về chính sách và luật dữ liệu tại
+              Việt Nam.</p>
+          </div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <img src="Icon/10.png" alt="icon" style="width: 32px; height: 32px;">
+          </div>
+          <div>
+            <h3>Phương Pháp Chuẩn Quốc Tế</h3>
+            <p>Áp dụng framework DAMA-DMBOK, ISO 8000 và các tiêu chuẩn quản trị dữ liệu toàn cầu.</p>
+          </div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <img src="Icon/8.png" alt="icon" style="width: 32px; height: 32px;">
+          </div>
+          <div>
+            <h3>Đồng Hành Dài Hạn</h3>
+            <p>Không chỉ tư vấn, chúng tôi đồng hành cùng doanh nghiệp từ giai đoạn thiết kế đến vận hành ổn định.</p>
+          </div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <img src="Icon/7.png" alt="icon" style="width: 32px; height: 32px;">
+          </div>
+          <div>
+            <h3>Giải Pháp Tùy Biến</h3>
+            <p>Mỗi doanh nghiệp là duy nhất — giải pháp được thiết kế riêng phù hợp quy mô và ngành nghề.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <!-- <div class="stats-bar reveal">
       <div class="stat-block"><h3 class="counter" data-target="150">0</h3><p>Doanh Nghiệp Đối Tác</p></div>
       <div class="stat-block"><h3 class="counter" data-target="500">0</h3><p>Dự Án Hoàn Thành</p></div>
       <div class="stat-block"><h3 class="counter" data-target="2000">0</h3><p>Học Viên Đào Tạo</p></div>
       <div class="stat-block"><h3 class="counter" data-target="98">0</h3><p>% Hài Lòng</p></div>
     </div> -->
-  </div>
-</section>
+    </div>
+  </section>
 
-<!-- Testimonials -->
-<!-- <section class="section" id="testimonials">
+  <!-- Testimonials -->
+  <!-- <section class="section" id="testimonials">
   <div class="container">
     <div class="text-center reveal">
       <div class="section-label">💬 Đánh Giá</div>
@@ -395,8 +424,8 @@
   </div>
 </section> -->
 
-<!-- CTA -->
-<!-- <section class="section">
+  <!-- CTA -->
+  <!-- <section class="section">
   <div class="container">
     <div class="cta-section reveal">
       <h2>Sẵn Sàng Xây Dựng <span class="highlight">Nền Tảng Dữ Liệu</span>?</h2>
@@ -409,111 +438,128 @@
   </div>
 </section> -->
 
-<!-- Contact -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">📩 Liên Hệ</div>
-      <h2 class="section-title">Kết Nối Với <span class="highlight">Chúng Tôi</span></h2>
-      <p class="section-desc mx-auto">Để lại thông tin, chúng tôi sẽ liên hệ tư vấn cho bạn trong 24 giờ.</p>
-    </div>
-    <div class="contact-wrapper">
-      <div class="contact-info reveal">
-        <div class="contact-item">
-          <div class="contact-item-icon">📧</div>
-          <div><h4>Email</h4><p>dgna.co.ltd@gmail.com</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">📞</div>
-          <div><h4>Hotline</h4><p>0332 689 968 (Mr. Hùng Mạnh)</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">📍</div>
-          <div><h4>Văn Phòng</h4><p>22 Phố Trần Thủ Độ, Phường Yên Sở, Thành phố Hà Nội</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">🕐</div>
-          <div><h4>Giờ Làm Việc</h4><p>Thứ 2 – Thứ 6, 8:00 – 17:30</p></div>
-        </div>
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label">📩 Liên Hệ</div>
+        <h2 class="section-title">Kết Nối Với <span class="highlight">Chúng Tôi</span></h2>
+        <p class="section-desc mx-auto">Để lại thông tin, chúng tôi sẽ liên hệ tư vấn cho bạn trong 24 giờ.</p>
       </div>
-      <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Họ và tên *</label>
-            <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+      <div class="contact-wrapper">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <h4>Email</h4>
+              <p>dgna.co.ltd@gmail.com</p>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" placeholder="email@company.com" required>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <h4>Hotline</h4>
+              <p>0332 689 968 (Mr. Hùng Mạnh)</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <h4>Văn Phòng</h4>
+              <p>22 Phố Trần Thủ Độ, Phường Yên Sở, Thành phố Hà Nội</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div>
+              <h4>Giờ Làm Việc</h4>
+              <p>Thứ 2 – Thứ 6, 8:00 – 17:30</p>
+            </div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Số điện thoại</label>
-            <input type="tel" id="phone" placeholder="0912 345 678">
+        <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Họ và tên *</label>
+              <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" placeholder="email@company.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Số điện thoại</label>
+              <input type="tel" id="phone" placeholder="0912 345 678">
+            </div>
+            <div class="form-group">
+              <label for="interest">Quan tâm đến</label>
+              <select id="interest">
+                <option value="">— Chọn dịch vụ —</option>
+                <option value="consulting">Tư vấn chiến lược</option>
+                <option value="course">Khóa học</option>
+                <option value="implementation">Triển khai hệ thống</option>
+                <option value="all">Tất cả dịch vụ</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
-            <label for="interest">Quan tâm đến</label>
-            <select id="interest">
-              <option value="">— Chọn dịch vụ —</option>
-              <option value="consulting">Tư vấn chiến lược</option>
-              <option value="course">Khóa học</option>
-              <option value="implementation">Triển khai hệ thống</option>
-              <option value="all">Tất cả dịch vụ</option>
-            </select>
+            <label for="message">Nội dung</label>
+            <textarea id="message" placeholder="Mô tả ngắn gọn nhu cầu của bạn..."></textarea>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Nội dung</label>
-          <textarea id="message" placeholder="Mô tả ngắn gọn nhu cầu của bạn..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Gửi Yêu Cầu Tư Vấn <span>→</span></button>
-      </form>
+          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Gửi Yêu Cầu Tư Vấn
+            <span>→</span></button>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo"><div class="logo-icon">📊</div><span>DGNA</span></a>
-        <p>Đối tác tin cậy trong hành trình quản trị dữ liệu doanh nghiệp. Từ tư vấn, đào tạo đến triển khai toàn diện.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Dịch Vụ</h4>
-        <a href="#services">Tư Vấn Chiến Lược</a>
-        <a href="#courses">Khóa Học</a>
-        <a href="#services">Triển Khai Hệ Thống</a>
-        <a href="#services">Hỗ Trợ Kỹ Thuật</a>
-      </div>
-      <!-- <div class="footer-col">
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <img src="Logo/Logo-2.png" alt="DGNA Logo" style="height: 40px; width: auto;">
+          </a>
+          <p>Đối tác tin cậy trong hành trình quản trị dữ liệu doanh nghiệp. Từ tư vấn, đào tạo đến triển khai toàn
+            diện.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Dịch Vụ</h4>
+          <a href="#services">Tư Vấn Chiến Lược</a>
+          <a href="#courses">Khóa Học</a>
+          <a href="#services">Triển Khai Hệ Thống</a>
+          <a href="#services">Hỗ Trợ Kỹ Thuật</a>
+        </div>
+        <!-- <div class="footer-col">
         <h4>Khóa Học</h4>
         <a href="#courses">Data Governance</a>
         <a href="#courses">Data Quality</a>
         <a href="#courses">Data Architecture</a>
         <a href="#courses">DAMA-DMBOK</a>
       </div> -->
-      <div class="footer-col">
-        <h4>Liên Kết</h4>
-        <a href="#about">Về Chúng Tôi</a>
-        <a href="#contact">Liên Hệ</a>
-        <a href="#">Blog</a>
-        <a href="#">Chính Sách</a>
+        <div class="footer-col">
+          <h4>Liên Kết</h4>
+          <a href="#about">Về Chúng Tôi</a>
+          <a href="#contact">Liên Hệ</a>
+          <a href="#">Blog</a>
+          <a href="#">Chính Sách</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 DGNA. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/share/1D5nSQDkpx/?mibextid=wwXIfr" aria-label="Facebook">f</a>
+          <a href="https://www.linkedin.com/company/dgna-co-ltd" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 DGNA. All rights reserved.</p>
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/share/1D5nSQDkpx/?mibextid=wwXIfr" aria-label="Facebook">f</a>
-        <a href="https://www.linkedin.com/company/dgna-co-ltd" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="YouTube">▶</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
