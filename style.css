@@ -1,5 +1,55 @@
 /* ===== IMPORTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ===== FONTS ===== */
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FzPoppins';
+  src: url('Font/FzPoppins/FZ%20Poppins-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
 
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -43,7 +93,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'FzPoppins', 'Inter', -apple-system, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.7;
@@ -854,7 +904,7 @@ img {
 }
 
 .course-img {
-  height: 180px;
+  height: 240px;
   position: relative;
   overflow: hidden;
 }
