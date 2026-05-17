@@ -896,6 +896,8 @@ img {
   border-radius: var(--radius);
   overflow: hidden;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .course-card:hover {
@@ -940,6 +942,9 @@ img {
 
 .course-body {
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .course-body h3 {
@@ -961,6 +966,7 @@ img {
   align-items: center;
   padding-top: 16px;
   border-top: 1px solid var(--border-color);
+  margin-top: auto;
 }
 
 .course-meta span {
