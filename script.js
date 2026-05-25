@@ -143,7 +143,7 @@ if (statsBar) statsObserver.observe(statsBar);
 
 /* ===== SMOOTH SCROLL FOR NAV LINKS ===== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -172,18 +172,60 @@ function typeEffect() {
 }
 setTimeout(typeEffect, 2000);
 
-/* ===== FORM HANDLER ===== */
+
+const GOOGLE_SHEET_URL = 'AKfycbyMyYS-6Uelrt6KbVFsQDSUBCcoDLl53EuueS6lnr5iSq6FUgrhJBhUcEl4BFc1i7id';
+
 function handleSubmit(e) {
   e.preventDefault();
+
   const btn = e.target.querySelector('button[type="submit"]');
-  const originalText = btn.innerHTML;
-  btn.innerHTML = '✓ Đã gửi thành công!';
-  btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-  setTimeout(() => {
-    btn.innerHTML = originalText;
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
+  const originalHTML = btn.innerHTML;
+
+  // Lấy dữ liệu form
+  const data = {
+    timestamp: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    interest: document.getElementById('interest').value,
+    message: document.getElementById('message').value.trim(),
+  };
+
+  // Trạng thái: đang gửi
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Đang gửi... <span></span>';
+  btn.style.opacity = '0.7';
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',           // Apps Script yêu cầu no-cors
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then(() => {
+      // Thành công (no-cors không trả về status, nên coi là OK)
+      btn.innerHTML = '✅ Gửi thành công!';
+      btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      btn.style.opacity = '1';
+      e.target.reset();
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    })
+    .catch(() => {
+      btn.innerHTML = '❌ Lỗi, thử lại!';
+      btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+      btn.style.opacity = '1';
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
 }
 
 /* ===== PARALLAX ON HERO VISUAL ===== */
