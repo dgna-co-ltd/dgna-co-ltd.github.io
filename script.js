@@ -173,7 +173,7 @@ function typeEffect() {
 setTimeout(typeEffect, 2000);
 
 
-const GOOGLE_SHEET_URL = 'AKfycbyMyYS-6Uelrt6KbVFsQDSUBCcoDLl53EuueS6lnr5iSq6FUgrhJBhUcEl4BFc1i7id';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyMyYS-6Uelrt6KbVFsQDSUBCcoDLl53EuueS6lnr5iSq6FUgrhJBhUcEl4BFc1i7id/exec';
 
 function handleSubmit(e) {
   e.preventDefault();
